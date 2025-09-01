@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F5E6D3;
+    margin: 0;
+}
+
+    /* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #F5E6D3;
+    color: #A0522D;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 50px;
+    height: auto;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #A0522D;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #D4A437;
+}
+
+    /* Hero Banner */
+.hero-banner {
+    min-height: 75vh;
+    height: auto;
+    background: url('/Kit-de-imágenes/Sillón\ Copacabana.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #A0522D;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #C47A6D;
+}
+
+    /*Button CTA*/
+.button-cta {
+    text-decoration: none;
+    background-color: #D4A437;
+    color: #F5E6D3;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.button-cta:hover {
+    background-color: #D4A437;
+}
+
+    /* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #A0522D;
+    color: white;
+    width: 100%;
+    margin: 0;
+}
+
+footer p {
+    color: #F5E6D3;
+}
+
+    /*Productos*/
+.productos-destacados {
+    padding: 2rem;
+    text-align: center;
+}
+
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.producto {
+    width: 90%;
+    max-width: 300px;
+    background-color: #F5E6D3;
+    border: 1px solid #A0522D;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+
+}
+
+.producto img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+    /* Responsive */
+    /* Celulares */
+@media (max-width: 359px) {
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    .button-cta {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    .navbar ul {
+        display: none;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem 1rem;
+    }
+    .producto {
+        width: 100%;
+    }
+}
+
+    /* Tablets */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    .button-cta {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem 1.2rem;
+    }
+    .producto {
+        width: 60%;
+    }
+}
+
+    /* Notebooks */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content p {
+        font-size: 1.3rem;
+    }
+    .button-cta {
+        padding: 0.7rem 1.3rem;
+        font-size: 1.05rem;
+    }
+    .producto {
+        width: 70%;
+    }
+}
+
+    /* Pc */
+@media (min-width: 1200px) {
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    .hero-content p {
+        font-size: 1.8rem;
+    }
+    .button-cta {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+    .producto {
+        width: 250px;
+    }
+}
+
