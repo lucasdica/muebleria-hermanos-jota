@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -12,12 +17,13 @@ body {
     margin: 0;
 }
 
-    /* Navbar */
+    /*Navbar*/
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
     background-color: #F5E6D3;
     color: #A0522D;
     position: sticky;
@@ -53,7 +59,7 @@ body {
     color: #D4A437;
 }
 
-    /* Hero Banner */
+    /*Hero Banner*/
 .hero-banner {
     min-height: 75vh;
     height: auto;
@@ -73,15 +79,15 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
     color: #A0522D;
 }
 
 .hero-content p {
-    font-size: 1.5rem;
+    font-size: 0.9rem;
     margin-bottom: 2rem;
-    color: #C47A6D;
+    color: #A0522D;
 }
 
     /*Button CTA*/
@@ -89,9 +95,10 @@ body {
     text-decoration: none;
     background-color: #D4A437;
     color: #F5E6D3;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: bold;
+    font-size: 0.9rem;
     transition: background-color 0.3s;
 }
 
@@ -99,7 +106,34 @@ body {
     background-color: #D4A437;
 }
 
-    /* Footer */
+    /*Sobre Nosotros*/
+.sobre-nosotros {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 0 20px;
+  color: black;
+  line-height: 1.7;
+}
+
+.sobre-nosotros h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 25px;
+  color: black;
+}
+
+
+.sobre-nosotros p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.sobre-nosotros strong {
+  font-weight: 700;
+  color: black;
+}
+
+    /*Footer*/
 footer {
     text-align: center;
     padding: 1rem;
@@ -109,8 +143,49 @@ footer {
     margin: 0;
 }
 
-footer p {
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
     color: #F5E6D3;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: #D4A437;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer p {
+    color: white;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 40px;
+  color: white;
+  border-top: 1px solid #D4A437;
+  padding-top: 15px;
 }
 
     /*Productos*/
@@ -128,14 +203,13 @@ footer p {
 }
 
 .producto {
-    width: 90%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 300px; 
     background-color: #F5E6D3;
     border: 1px solid #A0522D;
     border-radius: 10px;
     padding: 1rem;
     text-align: center;
-
 }
 
 .producto img {
@@ -145,34 +219,8 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
-    /* Responsive */
-    /* Celulares */
-@media (max-width: 359px) {
-    .hero-content h1 {
-        font-size: 1.6rem;
-    }
-    .hero-content p {
-        font-size: 0.9rem;
-    }
-    .button-cta {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-    .navbar ul {
-        display: none;
-    }
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.5rem 1rem;
-    }
-    .producto {
-        width: 100%;
-    }
-}
-
-    /* Tablets */
-@media (max-width: 768px) {
+    /*Tablets*/
+@media (min-width: 360px) {
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -183,18 +231,22 @@ footer p {
         padding: 0.6rem 1.2rem;
         font-size: 1rem;
     }
+
     .navbar {
         flex-direction: column;
         align-items: flex-start;
         padding: 0.8rem 1.2rem;
+        justify-content: space-between;
     }
+
     .producto {
         width: 60%;
+        max-width: 300px;
     }
 }
 
-    /* Notebooks */
-@media (max-width: 1024px) {
+    /*Notebooks*/
+@media (min-width: 769px) {
     .hero-content h1 {
         font-size: 2.5rem;
     }
@@ -205,12 +257,83 @@ footer p {
         padding: 0.7rem 1.3rem;
         font-size: 1.05rem;
     }
+
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem 2rem;
+        justify-content: space-between;
+    }
+
     .producto {
         width: 70%;
+        max-width: 300px;
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .sobre-nosotros {
+    padding: 0 40px;
+    }
+
+  .sobre-nosotros h2 {
+    font-size: 2.2rem;
+    }
+
+  .sobre-nosotros p {
+    font-size: 1.05rem;
     }
 }
 
-    /* Pc */
+    /*Pcs medianas*/
+@media (min-width: 1025px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+    .button-cta {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.05rem;
+    }
+
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem 2rem;
+        justify-content: space-between;
+    }
+
+    .producto {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .sobre-nosotros {
+    padding: 0 40px;
+    }
+
+  .sobre-nosotros h2 {
+    font-size: 2.2rem;
+    }
+
+  .sobre-nosotros p {
+    font-size: 1.05rem;
+    }
+}
+
+    /*PCs grandes*/
 @media (min-width: 1200px) {
     .hero-content h1 {
         font-size: 4rem;
@@ -222,8 +345,34 @@ footer p {
         padding: 1rem 2rem;
         font-size: 1.2rem;
     }
+
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem 2rem;
+        justify-content: space-between;
+    }
+
     .producto {
         width: 250px;
+        max-width: 250px;
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .sobre-nosotros {
+    padding: 0 40px;
+    }
+
+  .sobre-nosotros h2 {
+    font-size: 2.2rem;
+    }
+
+  .sobre-nosotros p {
+    font-size: 1.05rem;
     }
 }
-
