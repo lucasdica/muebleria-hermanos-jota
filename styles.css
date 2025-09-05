@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+:root {
+  --color-prin: #A0522D;
+  --color-sec: #87A96B;
+  --color-bg-prin: #F5E6D3;
+  --color-det-prem: #D4A437;
+  --color-det-fem: #C47A6D;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 82px;
@@ -13,8 +21,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #F5E6D3;
+    background-color: var(--color-bg-prin);
     margin: 0;
+    overflow-x: hidden; 
 }
 
     /*Navbar*/
@@ -24,8 +33,8 @@ body {
     align-items: flex-start;
     flex-direction: column;
     padding: 0.5rem 1rem;
-    background-color: #F5E6D3;
-    color: #A0522D;
+    background-color: var(--color-bg-prin);
+    color: var(--color-prin);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -50,14 +59,72 @@ body {
 
 .navbar a {
     text-decoration: none;
-    color: #A0522D;
+    color: var(--color-prin);
     font-weight: bold;
     transition: color 0.3s;
 }
 
 .navbar a:hover {
-    color: #D4A437;
+    color: var(--color-det-prem);
 }
+
+    /*Footer*/
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--color-prin);
+    color: white;
+    width: 100%;
+    /* margin: 0; */
+    margin-top: 16px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: var(--color-bg-prin);
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: var(--color-det-prem);
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer p {
+    color: white;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 40px;
+  color: white;
+  border-top: 1px solid var(--color-det-prem);
+  padding-top: 15px;
+}
+
+/* PAGINA PRINCIPAL */
 
     /*Hero Banner*/
 .hero-banner {
@@ -81,20 +148,20 @@ body {
 .hero-content h1 {
     font-size: 1.6rem;
     margin-bottom: 1rem;
-    color: #A0522D;
+    color: var(--color-prin);
 }
 
 .hero-content p {
     font-size: 0.9rem;
     margin-bottom: 2rem;
-    color: #A0522D;
+    color: var(--color-prin);
 }
 
     /*Button CTA*/
 .button-cta {
     text-decoration: none;
-    background-color: #D4A437;
-    color: #F5E6D3;
+    background-color: var(--color-det-prem);
+    color: var(--color-bg-prin);
     padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: bold;
@@ -103,7 +170,7 @@ body {
 }
 
 .button-cta:hover {
-    background-color: #D4A437;
+    background-color: var(--color-det-prem);
 }
 
     /*Sobre Nosotros*/
@@ -133,61 +200,6 @@ body {
   color: black;
 }
 
-    /*Footer*/
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #A0522D;
-    color: white;
-    width: 100%;
-    margin: 0;
-}
-
-.footer-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
-}
-
-.footer-section {
-    flex: 1;
-}
-
-.footer-section h3 {
-    margin-bottom: 10px;
-}
-
-.footer-section a {
-    color: #F5E6D3;
-    text-decoration: none;
-}
-
-.footer-section a:hover {
-    color: #D4A437;
-}
-
-footer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-footer p {
-    color: white;
-}
-
-.copyright {
-  text-align: center;
-  font-size: 0.85rem;
-  margin-top: 40px;
-  color: white;
-  border-top: 1px solid #D4A437;
-  padding-top: 15px;
-}
-
     /*Productos*/
 .productos-destacados {
     padding: 2rem;
@@ -205,8 +217,8 @@ footer p {
 .producto {
     width: 100%;
     max-width: 300px; 
-    background-color: #F5E6D3;
-    border: 1px solid #A0522D;
+    background-color: var(--color-bg-prin);
+    border: 1px solid var(--color-prin);
     border-radius: 10px;
     padding: 1rem;
     text-align: center;
@@ -219,8 +231,82 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
+/* PAGINA PRODUCTOS */
+
+/* Search */
+
+#buscador {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 6px;
+}
+
+#buscador i, form {
+    margin: 16px 0;
+}
+
+#buscador form input {
+    background-color: white;
+}
+
+.fa-solid {
+    width: 16px;
+    height: 16px;
+    color: var(--color-prin);
+}
+
+/* Productos */ 
+
+#seccion-productos {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    background-color: white;
+    border: 1px solid black;
+    transition: border-width 0.1s ease;
+}
+
+.card:hover {
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    background-color: white;
+}
+
+.card h2, strong{
+    background-color: var(--color-sec);
+}
+
+.card button {
+    background-color: var(--color-det-prem);
+    font-weight: bold;
+    transition: border-width 0.2s ease;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.card button:hover {
+    background-color: var(--color-det-fem);
+    cursor: pointer;
+}
+
     /*Tablets*/
-@media (min-width: 360px) {
+@media (min-width: 440px) {
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -242,6 +328,10 @@ footer p {
     .producto {
         width: 60%;
         max-width: 300px;
+    }
+
+    #seccion-productos {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -280,11 +370,11 @@ footer p {
     padding: 0 40px;
     }
 
-  .sobre-nosotros h2 {
+    .sobre-nosotros h2 {
     font-size: 2.2rem;
     }
 
-  .sobre-nosotros p {
+    .sobre-nosotros p {
     font-size: 1.05rem;
     }
 }
@@ -324,12 +414,16 @@ footer p {
     padding: 0 40px;
     }
 
-  .sobre-nosotros h2 {
+    .sobre-nosotros h2 {
     font-size: 2.2rem;
     }
 
-  .sobre-nosotros p {
+    .sobre-nosotros p {
     font-size: 1.05rem;
+    }
+
+    #seccion-productos {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -368,11 +462,11 @@ footer p {
     padding: 0 40px;
     }
 
-  .sobre-nosotros h2 {
+    .sobre-nosotros h2 {
     font-size: 2.2rem;
     }
 
-  .sobre-nosotros p {
+    .sobre-nosotros p {
     font-size: 1.05rem;
     }
 }
