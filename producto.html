@@ -30,19 +30,28 @@
 
     <main>
       <article class="contenedor-producto">
-        <img src="Kit-de-imágenes/Butaca Mendoza.png" alt="butaca de madera" class="imagen-producto" />
+        
+        <div class="imagen">
+            <img
+              src="Kit-de-imágenes/Butaca Mendoza.png"
+              alt="butaca de madera"
+              width="1024"
+              height="1024"
+              loading="lazy"
+            />
+        </div>
 
-        <aside class="producto-detalles">
+        <aside class="info">
+          <h1 id="nombre">Butaca Mendoza</h1>
+
+          <p class="precio">$56.700</p>
+
+          <div class="boton-compra">
+            <button class="button-cta">Agregar al carrito</button>
+          </div>
           
-            <h2>Mueble de madera</h2>
-
-          <h3>Precio $$$</h3>
-
-          <button class="button-cta">Agregar al carrito</button>
-
           <section class="descripcion">
-            
-            <h3>Descripcion</h3>
+            <h2>Descripcion</h2>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
@@ -62,11 +71,33 @@
               quod. Totam.
             </p>
           </section>
+
+          <section class="especificaciones">
+            <h2 id="titulo-especificaciones">Especificaciones</h2>
+            <table>
+              <tr>
+                <th>Material</th>
+                <td>Madera sólida / Tapizado lino</td>
+              </tr>
+              <tr>
+                <th>Medidas</th>
+                <td>80 × 65 × 90 cm</td>
+              </tr>
+              <tr>
+                <th>Peso</th>
+                <td>12 kg</td>
+              </tr>
+              <tr>
+                <th>Garantía</th>
+                <td>1 año</td>
+              </tr>
+            </table>
+          </section>
         </aside>
       </article>
 
-      <section class="Comentarios">
-        <h3>Comentarios</h3>
+      <section class="comentarios">
+        <h2>Comentarios</h2>
       </section>
     </main>
 
