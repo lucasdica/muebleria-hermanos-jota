@@ -1,0 +1,21 @@
+.contenedor-producto {
+    display:flex;
+}
+
+.imagen-producto{
+    width: 46%;
+    height: auto;
+}
+
+.producto-detalles h2 {
+  margin-bottom: 15px; /* separa h2 del h3 siguiente */
+}
+
+.producto-detalles h3 {
+  margin-bottom: 10px; /* separa h3 de botón o párrafo siguiente */
+}
+
+.producto-detalles p {
+  margin-top: 8px;     /* separación arriba del párrafo */
+  margin-bottom: 20px; /* separación abajo del párrafo */
+}
