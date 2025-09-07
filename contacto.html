@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto</title>
+  <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+  <main class="contacto-container">
+    <h1>Contacto</h1>
+    <p>Nuestros clientes suelen tener preguntas. Déjanos tus dudas en el siguiente formulario:</p>
+    
+    <form id="contactForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p id="successMessage" class="success-message"></p>
+  </main>
+
+  <script src="js/contacto.js"></script>
+</body>
+</html>
