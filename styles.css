@@ -46,6 +46,12 @@ body {
     gap: 10px;
 }
 
+.logo h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: var(--color-prin);
+}
+
 .logo img {
     width: 50px;
     height: auto;
@@ -62,6 +68,8 @@ body {
     color: var(--color-prin);
     font-weight: bold;
     transition: color 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
 }
 
 .navbar a:hover {
@@ -94,11 +102,15 @@ footer {
 
 .footer-section h3 {
     margin-bottom: 10px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
 }
 
 .footer-section a {
     color: var(--color-bg-prin);
     text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
 
 .footer-section a:hover {
@@ -113,6 +125,8 @@ footer ul {
 
 footer p {
     color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
 
 .copyright {
@@ -169,12 +183,16 @@ footer p {
     font-size: 1.6rem;
     margin-bottom: 1rem;
     color: var(--color-prin);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
 }
 
 .hero-content p {
     font-size: 0.9rem;
     margin-bottom: 2rem;
-    color: var(--color-prin);;
+    color: var(--color-prin);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
 
     /*Button CTA*/
@@ -187,6 +205,8 @@ footer p {
     font-weight: bold;
     font-size: 0.9rem;
     transition: background-color 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
 
 .button-cta:hover {
@@ -207,12 +227,16 @@ footer p {
   text-align: center;
   margin-bottom: 25px;
   color: black;
+  font-family: 'Playfair Display', Georgia;
+  font-weight: 400;
 }
 
 
 .sobre-nosotros p {
   margin-bottom: 20px;
   font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
 }
 
 .sobre-nosotros strong {
@@ -230,6 +254,7 @@ footer p {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--color-prin);
+    font-family: 'Playfair Display', Georgia;
 }
 
 .productos-container {
@@ -248,6 +273,8 @@ footer p {
     border-radius: 10px;
     padding: 1rem;
     text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
 }
 
 .producto img {
