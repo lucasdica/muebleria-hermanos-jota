@@ -1,3 +1,4 @@
+import { agregarAlCarrito } from "./agregarAlCarrito.js";
 async function cargarDatos() {
     const respuesta = await fetch('./data/catalogo.json')
     const datos = await respuesta.json()
