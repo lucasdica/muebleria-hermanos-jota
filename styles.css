@@ -185,21 +185,23 @@ footer p {
     color: var(--color-prin);
     font-family: 'Inter', sans-serif;
     font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
 
 .hero-content p {
     font-size: 0.9rem;
     margin-bottom: 2rem;
-    color: var(--color-prin);
+    color: white;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
 }
 
     /*Button CTA*/
 .button-cta {
     text-decoration: none;
     background-color: var(--color-det-prem);
-    color: var(--color-bg-prin);
+    color: white;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: bold;
@@ -210,7 +212,7 @@ footer p {
 }
 
 .button-cta:hover {
-    background-color: var(--color-det-prem);
+    background-color: var(--color-sec);
 }
 
     /*Sobre Nosotros*/
@@ -275,6 +277,11 @@ footer p {
     text-align: center;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+}
+
+.producto:hover {
+    background-color: white;
+    cursor: pointer;
 }
 
 .producto img {
