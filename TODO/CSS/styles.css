@@ -164,7 +164,7 @@ footer p {
 .hero-banner {
     min-height: 75vh;
     height: auto;
-    background: url('/Kit-de-imágenes/Butaca\ Mendoza.png') no-repeat center center/cover;
+    background: url('Kit-de-imágenes/Butaca-Mendoza.png') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
