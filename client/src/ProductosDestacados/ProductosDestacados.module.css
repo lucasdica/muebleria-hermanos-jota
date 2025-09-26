@@ -1,0 +1,11 @@
+.productosDestacados {
+  padding: 2rem;
+  text-align: center;
+}
+
+.productosDestacados h2{
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--color-prin);
+    font-family: 'Playfair Display', Georgia;
+}

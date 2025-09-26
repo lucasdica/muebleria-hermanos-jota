@@ -1,0 +1,114 @@
+.heroBanner {
+    min-height: 75vh;
+    height: auto;
+    background: url('https://lucasdica.github.io/productos-hermanos-jota/productos-images/Mesa_de_Noche_Aconcagua.png') no-repeat center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background-color: var(--color-det-fem);
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroContent h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-det-prem);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+.heroContent p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+/*Button CTA*/
+.buttonCta {
+    text-decoration: none;
+    background-color: var(--color-det-prem);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: background-color 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    border: 1px solid black;
+}
+
+.buttonCta:hover {
+    background-color: var(--color-prin);
+}
+
+/* Medias */
+
+/*Tablets*/
+@media (min-width: 440px) {
+    .heroContent h1 {
+        font-size: 3rem;
+    }
+    .heroContent p {
+        font-size: 1.5rem;
+    }
+    .buttonCta {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+}
+
+/*Notebooks*/
+@media (min-width: 769px) {
+    .heroContent h1 {
+        font-size: 4rem;
+    }
+    .heroContent p {
+        font-size: 2rem;
+    }
+    .buttonCta {
+        padding: 0.7rem 1.3rem;
+        font-size: 1.05rem;
+    }
+
+}
+
+/*Pcs medianas*/
+@media (min-width: 1025px) {
+    .heroContent h1 {
+        font-size: 5rem;
+    }
+    .heroContent p {
+        font-size: 3rem;
+    }
+    .buttonCta {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.05rem;
+    }
+}
+
+/*PCs grandes*/
+@media (min-width: 1200px) {
+    .heroContent h1 {
+        font-size: 5rem;
+    }
+    .heroContent p {
+        font-size: 3rem;
+    }
+    .buttonCta {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+}

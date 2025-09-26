@@ -8,4 +8,4 @@ Desarroladores:
 
 Funcionalidades:
 
-Tecnologías utilizadas: HTML, CSS y JavaScript
+Tecnologías utilizadas: HTML, CSS, JavaScript, Node.js, Express.js y React.

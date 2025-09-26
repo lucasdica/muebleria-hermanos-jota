@@ -1,0 +1,75 @@
+.sobreNosotros {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 0 20px;
+  color: black;
+  line-height: 1.7;
+}
+
+.sobreNosotros h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--color-prin);
+  font-family: 'Playfair Display', Georgia;
+  font-weight: 700;
+}
+
+.sobreNosotros p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.sobreNosotros strong {
+  font-weight: 700;
+  color: black;
+}
+
+/* Medias */
+
+/* Notebooks */
+@media (min-width: 769px) {
+  .sobre-nosotros {
+    padding: 0 40px;
+  }
+
+  .sobre-nosotros h2 {
+    font-size: 2.2rem;
+  }
+
+  .sobre-nosotros p {
+    font-size: 1.05rem;
+    }
+}
+
+/*Pcs medianas*/
+@media (min-width: 1025px) {
+  .sobre-nosotros {
+    padding: 0 40px;
+  }
+
+  .sobre-nosotros h2 {
+    font-size: 2.2rem;
+  }
+
+  .sobre-nosotros p {
+    font-size: 1.05rem;
+  }
+}
+
+/*PCs grandes*/
+@media (min-width: 1200px) {
+  .sobre-nosotros {
+    padding: 0 40px;
+  }
+
+  .sobre-nosotros h2 {
+    font-size: 2.2rem;
+  }
+
+  .sobre-nosotros p {
+    font-size: 1.05rem;
+    }
+}
