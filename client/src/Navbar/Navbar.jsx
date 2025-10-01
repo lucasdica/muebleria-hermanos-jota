@@ -1,23 +1,23 @@
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import styles from './navbar.module.css';
 
 function Navbar(){
     return(
-        <>
-            <nav className={styles.navbar}>
-                <div className={styles.logo}>
-                    <img src="https://lucasdica.github.io/productos-hermanos-jota/productos-images/logo.svg" alt="Logo de Muebleria Hermanos Jota"/>
-                    <h2>Hermanos Jota</h2>
-                </div>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#destacado">Destacado</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="./productos.html">Productos</a></li>
-                    <li><a href="./contacto.html">Contacto</a></li>
-                </ul>
-            </nav>
-        </>
+        <nav className={styles.navbar}>
+            <div className={styles.logo}>
+                <img src="https://lucasdica.github.io/productos-hermanos-jota/productos-images/logo.svg" alt="Logo de Muebleria Hermanos Jota"/>
+                <h2>Hermanos Jota</h2>
+            </div>
+            <ul>
+                <li><HashLink smooth to="/#inicio">Inicio</HashLink></li>
+                <li><HashLink smooth to="/#destacado">Destacado</HashLink></li>
+                <li><HashLink smooth to="/#nosotros">Nosotros</HashLink></li>
+                <li><Link to="/productos">Productos</Link></li>
+                <li><Link to="/contacto">Contacto</Link></li>
+            </ul>
+        </nav>
     )
 }
 
-export default Navbar
+export default Navbar;
