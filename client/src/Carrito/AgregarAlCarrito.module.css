@@ -1,0 +1,9 @@
+.iconAgregarCarrito {
+    height: 30px;
+    width: auto;
+}
+
+.iconAgregarCarrito:hover {
+    color: var(--color-sec);
+    cursor: pointer;
+}

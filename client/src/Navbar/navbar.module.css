@@ -1,8 +1,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: column;
+  align-items: center;
   padding: 0.5rem 1rem;
   background-color: var(--color-bg-prin);
   color: var(--color-prin);
@@ -15,12 +14,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  text-align: center;
 }
 
 .logo h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 700;
-    color: var(--color-prin);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  color: var(--color-prin);
 }
 
 .logo img {
@@ -28,35 +28,79 @@
   height: auto;
 }
 
-.navbar ul {
+.menu {
   list-style: none;
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .navbar a {
-    text-decoration: none;
-    color: var(--color-prin);
-    font-weight: bold;
-    transition: color 0.3s;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
+  text-decoration: none;
+  color: var(--color-prin);
+  font-weight: bold;
+  transition: color 0.3s;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
 }
 
 .navbar a:hover {
   color: var(--color-det-prem);
 }
 
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--color-prin);
+  cursor: pointer;
+}
+
+.carritoWrapper {
+  margin-left: 0;
+}
+
 /* Medias */
 
-/*Tablets*/
-@media (min-width: 440px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.8rem 1.2rem;
-        justify-content: space-between;
-    }
+/* Mobile */
+@media (max-width: 768px) {
+  .logo h2 {
+    display: none;
+  }
+
+  .navbar {
+    position: relative;
+    justify-content: center;
+  }
+
+  .hamburger {
+    display: block;
+    position: absolute;
+    left: 1rem;
+  }
+
+  .carritoWrapper {
+    position: static;
+    right: 1rem;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: var(--color-bg-prin);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .menu.open {
+    display: flex;
+  }
 }
 
 /*Notebooks*/

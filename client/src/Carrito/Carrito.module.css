@@ -17,7 +17,7 @@ button {
 
 .botonCarrito:hover {
     cursor: pointer;
-    color: var(--color-det-prem);
+    color: var(--color-det-fem);
 }
 
 .contador {
