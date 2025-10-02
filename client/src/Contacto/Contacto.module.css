@@ -54,3 +54,7 @@
 .contenedor-contacto button:hover {
   background-color: var(--color-det-prem);
 }
+
+textarea {
+  resize: none;
+}

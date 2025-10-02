@@ -1,18 +1,22 @@
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { useEffect, useState } from 'react';
-import styles from './ProductoDestacado.module.css';
+import styles from './ProductCard.module.css'
+import AgregarAlCarrito from '../Carrito/AgregarAlCarritoButtom';
 
-function ProductoDestacado() {
-    const [productos, setProductos] = useState([]);
+function ProductCard() {
+ const [productos, setProductos] = useState([]);
 
     useEffect(() => {
-        cargarProductosDestacados();
+        cargarProductos();
     }, []);
 
-    async function cargarProductosDestacados() {
+    async function cargarProductos() {
         try {
             const respuesta = await fetch(import.meta.env.BASE_URL + "/data/catalogo.json"); 
             const datos = await respuesta.json();
-            setProductos(datos.slice(0, 4));
+            setProductos(datos);
+            // setProductos(datos.slice(0, 1))
         } catch (error) {
             console.error('Error cargando productos:', error);
         }
@@ -35,7 +39,11 @@ function ProductoDestacado() {
                         onClick={() => handleClickProducto(producto.ID)}
                     >
                         <img src={producto.imagen} alt={producto.nombre} />
-                        <h3>{producto.nombre}</h3>
+                        <div className={styles.infoProductCard}>
+                            <h3>{producto.nombre}</h3>
+                            <p>${producto.precio}</p>
+                        </div>
+                        <AgregarAlCarrito />
                     </div>
                 ))
             )}
@@ -43,4 +51,4 @@ function ProductoDestacado() {
     )
 }
 
-export default ProductoDestacado;
+export default ProductCard

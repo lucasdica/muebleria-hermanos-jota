@@ -1,0 +1,94 @@
+.productosContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px; 
+    background-color: white;
+    border: 1px solid var(--color-prin);
+    border-radius: 10px;
+    padding: 0 1rem;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+.card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.infoProductCard {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.card p{
+    color: var(--color-det-fem);
+    font-weight: bold;
+}
+
+/* Medias */
+
+/*Tablets*/
+@media (min-width: 440px) {
+    .card {
+        width: 60%;
+        max-width: 300px;
+    }
+
+    #seccion-productos-destacados {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*Notebooks*/
+@media (min-width: 769px) {
+    .card {
+        width: 70%;
+        max-width: 300px;
+    }
+}
+
+/*Pcs medianas*/
+@media (min-width: 1025px) {
+    .card {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+/*PCs grandes*/
+@media (min-width: 1200px) {
+    .productosContainer{
+        justify-content: start;
+        padding-left: 5.5%;
+    }
+
+    .card {
+        width: 250px;
+        max-width: 250px;
+    }
+}

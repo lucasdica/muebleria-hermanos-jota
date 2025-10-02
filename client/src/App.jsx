@@ -6,6 +6,7 @@ import AboutUs from './AboutUs/AboutUs'
 import Contacto from './Contacto/Contacto'
 import Footer from './Footer/Footer'
 import { Routes, Route } from 'react-router-dom'
+import ProductPage from './Productos/ProductPage'
 
 function App() {
   
@@ -13,13 +14,14 @@ function App() {
     <>
       <Navbar/>
       <Routes>
-        <Route path="/" element={
+        <Route index element={
           <>
             <HeroBanner/>
             <ProductosDestacados/>
             <AboutUs/>
           </>
         }/>
+        <Route path='/productos' element={<ProductPage/>}/>
         <Route path="/contacto" element={<Contacto/>}/>
       </Routes>
       <Footer/>

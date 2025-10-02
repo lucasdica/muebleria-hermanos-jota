@@ -5,10 +5,14 @@ import styles from './navbar.module.css';
 function Navbar(){
     return(
         <nav className={styles.navbar}>
-            <div className={styles.logo}>
-                <img src="https://lucasdica.github.io/productos-hermanos-jota/productos-images/logo.svg" alt="Logo de Muebleria Hermanos Jota"/>
-                <h2>Hermanos Jota</h2>
-            </div>
+            <a href="/">
+                <div className={styles.logo}>
+                    
+                    <img src="https://lucasdica.github.io/productos-hermanos-jota/productos-images/logo.svg" alt="Logo de Muebleria Hermanos Jota"/>
+                    <h2>Hermanos Jota</h2>
+                    
+                </div>
+            </a>
             <ul>
                 <li><HashLink smooth to="/#inicio">Inicio</HashLink></li>
                 <li><HashLink smooth to="/#destacado">Destacado</HashLink></li>
