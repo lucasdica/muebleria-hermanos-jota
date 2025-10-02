@@ -1,0 +1,28 @@
+.buscador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.buscador form {
+  margin: 16px 0;
+}
+
+.buscador form input {
+  background-color: white;
+}
+
+input {
+    padding-left: 3px;
+}
+
+.search {
+  width: 16px;
+  height: 16px;
+  color: var(--color-prin);
+}
+
+.search:hover {
+    cursor: pointer;
+}

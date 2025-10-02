@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import styles from './navbar.module.css';
+import Carrito from '../Carrito/CarritoButtom';
 
 function Navbar(){
     return(
@@ -19,6 +20,7 @@ function Navbar(){
                 <li><HashLink smooth to="/#nosotros">Nosotros</HashLink></li>
                 <li><Link to="/productos">Productos</Link></li>
                 <li><Link to="/contacto">Contacto</Link></li>
+                <Link to="/compra"><Carrito /></Link>
             </ul>
         </nav>
     )

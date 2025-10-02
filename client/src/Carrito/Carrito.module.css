@@ -1,0 +1,39 @@
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+.iconoContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.botonCarrito {
+    color: var(--color-prin);
+    height: 30px;
+    width: auto;
+}
+
+.botonCarrito:hover {
+    cursor: pointer;
+    color: var(--color-det-prem);
+}
+
+.contador {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: var(--color-det-prem);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    pointer-events: none;
+}

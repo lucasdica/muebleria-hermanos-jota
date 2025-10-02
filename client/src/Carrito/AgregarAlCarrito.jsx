@@ -5,7 +5,7 @@ function AgregarAlCarrito(){
     return (
         <>
             <button>
-                <MdShoppingCart className={styles.botonCarrito}/>
+                <MdShoppingCart className={styles.botonCarrito} /> Agregar al carrito
             </button>       
         </>
     )
