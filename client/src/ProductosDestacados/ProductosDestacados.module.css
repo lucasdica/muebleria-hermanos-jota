@@ -1,6 +1,9 @@
 .productosDestacados {
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .productosDestacados h2{
@@ -8,4 +11,25 @@
     margin-bottom: 1rem;
     color: var(--color-prin);
     font-family: 'Playfair Display', Georgia;
+}
+
+/*Button CTA*/
+.buttonCta {
+    text-decoration: none;
+    background-color: var(--color-det-prem);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: background-color 0.3s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    border: 1px solid black;
+    margin-top: 1rem;
+    width: 15rem
+}
+
+.buttonCta:hover {
+    background-color: var(--color-sec);
 }

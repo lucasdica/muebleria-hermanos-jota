@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styles from "./ProductDetail.module.css"
 import AgregarAlCarrito from "../Carrito/AgregarAlCarrito";
 
-function ProductDetail() {
+function ProductDetail({agregar}) {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [error, setError] = useState(null);
@@ -55,7 +55,7 @@ function ProductDetail() {
         <div className={styles.precioComprar}>
           <p className={styles.precio}>${producto.precio}</p>
           <button className={styles.botonCta} disabled={!producto.enStock}>
-            <AgregarAlCarrito  />
+            <AgregarAlCarrito  agregar={agregar}/>
           </button>
         </div>
 

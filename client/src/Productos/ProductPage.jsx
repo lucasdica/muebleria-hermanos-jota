@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import Buscador from '../Buscador/Buscador';
 import ProductCard from './ProductCard';
 
-function ProductPage() {
+function ProductPage({ agregar }) {
   const [productos, setProductos] = useState([]);
   const [productosFiltrados, setProductosFiltrados] = useState([]);
 
   useEffect(() => {
     async function cargarProductos() {
       try {
-        const respuesta = await fetch(import.meta.env.BASE_URL + "/data/catalogo.json");
+        const respuesta = await fetch(import.meta.env.BASE_URL + "data/catalogo.json");
+
         const datos = await respuesta.json();
         setProductos(datos);
         setProductosFiltrados(datos);
@@ -17,7 +18,6 @@ function ProductPage() {
         console.error('Error cargando productos:', error);
       }
     }
-
     cargarProductos();
   }, []);
 
@@ -31,7 +31,7 @@ function ProductPage() {
   return (
     <div>
       <Buscador filtrarProductos={filtrarProductos} />
-      <ProductCard productos={productosFiltrados} />
+      <ProductCard productos={productosFiltrados} agregar={agregar} />
     </div>
   );
 }

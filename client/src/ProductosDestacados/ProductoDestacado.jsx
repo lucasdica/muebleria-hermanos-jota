@@ -18,22 +18,13 @@ function ProductoDestacado() {
         }
     }
 
-    const handleClickProducto = (productoId) => {
-        // Navegación a la página de detalle
-        window.location.href = `/producto.html?id=${productoId}`;
-    };
-
     return(
         <div className={styles.productosContainer}>
             {productos.length === 0 ? (
                 <p>Cargando productos...</p>
             ) : (
                 productos.map((producto) => (
-                    <div 
-                        key={producto.ID} 
-                        className={styles.card}
-                        onClick={() => handleClickProducto(producto.ID)}
-                    >
+                    <div className={styles.card}>
                         <img src={producto.imagen} alt={producto.nombre} />
                         <h3>{producto.nombre}</h3>
                     </div>
