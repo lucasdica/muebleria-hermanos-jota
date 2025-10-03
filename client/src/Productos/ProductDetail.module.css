@@ -1,0 +1,74 @@
+.contenedorProducto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.imagen {
+    width: 90vw;
+    height: auto;
+}
+
+.info {
+    width: 90vw;
+}
+
+.nombre {
+    color: var(--color-prin);
+    font-family: Georgia, sans-serif serif;
+}
+
+.precio {
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--color-sec);
+    margin-right: 5px;
+}
+
+.precioComprar {
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    width: 30vw;
+}
+
+table{
+    border: 2px solid black;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+th {
+    border-right: 2px solid black;
+}
+
+th, td {
+    padding: 1px 2px;
+    border-top: 2px solid black;
+}
+
+/* Medias */
+
+/*Notebooks*/
+@media (min-width: 769px) {
+    .contenedorProducto {
+        flex-direction: row;
+        margin: 0 5vw;
+    }
+
+    .imagen {
+    width: 40vw;
+    height: auto;
+    }
+
+    .info {
+        width: 50vw;
+        padding: 0 15px;
+    }
+
+}

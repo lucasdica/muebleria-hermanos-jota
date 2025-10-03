@@ -1,11 +1,12 @@
-// import { Link } from 'react-router-dom';
-// import { HashLink } from 'react-router-hash-link';
+import { useNavigate } from "react-router-dom";
 import AgregarAlCarrito from '../Carrito/AgregarAlCarrito';
 import styles from './ProductCard.module.css';
 
 function ProductCard({ productos }) {
+  const navigate = useNavigate();
+
   const handleClickProducto = (productoId) => {
-    window.location.href = `/producto.html?id=${productoId}`;
+    navigate(`/producto/${productoId}`);
   };
 
   return (

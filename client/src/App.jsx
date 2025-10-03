@@ -7,6 +7,7 @@ import Contacto from './Contacto/Contacto'
 import Footer from './Footer/Footer'
 import { Routes, Route } from 'react-router-dom'
 import ProductPage from './Productos/ProductPage'
+import ProductDetail from './Productos/ProductDetail'
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
           </>
         }/>
         <Route path='/productos' element={<ProductPage/>}/>
+        <Route path="/producto/:id" element={<ProductDetail />} />
         <Route path="/contacto" element={<Contacto/>}/>
       </Routes>
       <Footer/>
