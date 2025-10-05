@@ -64,7 +64,7 @@ Desde la carpeta `backend`, tienes dos opciones:
 
 #### **Iniciar el Frontend**
 
-Desde la carpeta `client`, tienes dos opciones:
+Desde la carpeta `client`, sigue estos pasos:
 |Comando | Uso |
 | :-- | :-- |
 |`npm run dev` | Inicia la aplicación en modo desarrollo (usualmente en http://localhost:5173).|
