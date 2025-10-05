@@ -64,4 +64,8 @@ Desde la carpeta `backend`, tienes dos opciones:
 
 #### **Iniciar el Frontend**
 
-Desde la carpeta `client`:
+Desde la carpeta `client`, tienes dos opciones:
+|Comando | Uso |
+| :-- | :-- |
+| `npm run previw` | Si quieres probar la versión optimizada que se generaría para producción (después de ejecutar `npm run build`) |
+| `npm run dev` | Para iniciar el servidor local que te permite desarrollar y ver cambios en tiempo real |
