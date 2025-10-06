@@ -15,9 +15,7 @@
 
 /*Button CTA*/
 .buttonCta {
-    text-decoration: none;
     background-color: var(--color-det-prem);
-    color: white;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: bold;
@@ -32,4 +30,9 @@
 
 .buttonCta:hover {
     background-color: var(--color-sec);
+}
+
+a:-webkit-any-link {
+    color: black;
+    text-decoration: none;
 }

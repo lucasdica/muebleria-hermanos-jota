@@ -1,5 +1,6 @@
 import styles from './ProductosDestacados.module.css';
 import ProductoDestacado from './ProductoDestacado';
+import { Link } from 'react-router-dom';
 
 function ProductosDestacados(){
     return(
@@ -7,7 +8,7 @@ function ProductosDestacados(){
             <section id="destacado" className={styles.productosDestacados}>
                 <h2>Muebles Destacados</h2>
                 <ProductoDestacado/>
-                <a href="/productos" className={styles.buttonCta}>Comprar Muebles</a>
+                <button className={styles.buttonCta}><Link to="/productos">Comprar Muebles</Link></button>
             </section>
         </>
     )
