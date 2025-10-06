@@ -8,7 +8,7 @@ function ProductosDestacados(){
             <section id="destacado" className={styles.productosDestacados}>
                 <h2>Muebles Destacados</h2>
                 <ProductoDestacado/>
-                <button className={styles.buttonCta}><Link to="/productos">Comprar Muebles</Link></button>
+                <Link to="/productos" className={styles.buttonCta}>Comprar Muebles</Link>
             </section>
         </>
     )
