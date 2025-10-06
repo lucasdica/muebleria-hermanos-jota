@@ -33,6 +33,5 @@
 }
 
 a:-webkit-any-link {
-    color: black;
     text-decoration: none;
 }
