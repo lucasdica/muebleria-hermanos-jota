@@ -50,4 +50,13 @@ rutaProductos.get('/:id', async (req, res, next) => {
     res.status(200).json(producto);
 })
 
+/*
+rutas CRUD
+GET /api/productos
+GET /api/productos/:id
+POST /api/productos
+PUT /api/productos/:id
+DELETE /api/productos/:id
+*/
+
 export default rutaProductos;
