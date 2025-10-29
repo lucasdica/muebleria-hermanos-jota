@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styles from "./ProductDetail.module.css"
+import { RiDeleteBin2Line, RiEdit2Line } from "react-icons/ri";
+import styles from "./ProductDetail.module.css";
 import AgregarAlCarrito from "../Carrito/AgregarAlCarrito";
+import ModalEditarProducto from "../ModalEditarProducto/ModalEditarProducto";
 
-function ProductDetail({agregar}) {
+function ProductDetail({ agregar }) {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [error, setError] = useState(null);
+  const [mostrarModal, setMostrarModal] = useState(false);
 
   useEffect(() => {
     async function fetchProducto() {
@@ -37,6 +40,11 @@ function ProductDetail({agregar}) {
     fetchProducto();
   }, [id]);
 
+  const handleGuardarCambios = (productoEditado) => {
+    setProducto(productoEditado);
+    // Acá se puede agregar la lógica del back
+  };
+
   if (error) return <h2>{error}</h2>;
   if (!producto) return <h2>Cargando producto...</h2>;
 
@@ -46,26 +54,32 @@ function ProductDetail({agregar}) {
     <div className={styles.contenedorProducto}>
       {/* Imagen */}
       <div className={styles.image}>
-        <img src={producto.imagen} alt={producto.nombre} className={styles.imagen} loading="lazy" />
+        <img
+          src={producto.imagen}
+          alt={producto.nombre}
+          className={styles.imagen}
+          loading="lazy"
+        />
       </div>
 
       {/* Información */}
       <aside className={styles.info}>
-        <h1 className={styles.nombre}>{producto.nombre}</h1>
-        <div className={styles.precioComprar}>
-          <p className={styles.precio}>${producto.precio}</p>
-          <button className={styles.botonCta} disabled={!producto.enStock}>
-            <AgregarAlCarrito  agregar={agregar}/>
-          </button>
+        <div className={styles.header}>
+          <h1 className={styles.nombre}>{producto.nombre}</h1>
         </div>
 
-        {/* Descripción */}
+        <div className={styles.precioComprar}>
+          <p className={styles.precio}>${producto.precio}</p>
+          <div className={styles.botonCta} disabled={!producto.enStock}>
+            <AgregarAlCarrito agregar={agregar} />
+          </div>
+        </div>
+
         <section className={styles.descripcion}>
-          <h2>Descripción</h2>  
+          <h2>Descripción</h2>
           <p>{producto.descripcion}</p>
         </section>
 
-        {/* Especificaciones */}
         <section className={styles.especificaciones}>
           <h2 className={styles.tituloEspecificaciones}>Especificaciones</h2>
           <table>
@@ -86,14 +100,28 @@ function ProductDetail({agregar}) {
             </tbody>
           </table>
         </section>
-        <section className={styles.edicion}>
-          <button className={styles.edit}>Editar</button>
-          <button className={styles.delete}>Eliminar</button>
-        </section>
+        {/* Editar o Eliminar */}
+         <section className={styles.edicion}>
+           <div className={styles.icon_delete} onClick={""}>
+             <RiDeleteBin2Line className={styles.icon} />
+             <span className={styles.icon_text}>Eliminar</span>
+           </div>
+           <div className={styles.icon_edit} onClick={() => setMostrarModal(true)}>
+             <RiEdit2Line className={styles.icon} />
+            <span className={styles.icon_text}>Editar</span>
+          </div>
+         </section>
       </aside>
+
+      {mostrarModal && (
+        <ModalEditarProducto
+          producto={producto}
+          onClose={() => setMostrarModal(false)}
+          onSave={handleGuardarCambios}
+        />
+      )}
     </div>
   );
 }
 
-export default ProductDetail;
-
+export default ProductDetail

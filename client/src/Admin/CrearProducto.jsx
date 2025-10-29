@@ -53,6 +53,7 @@ function CrearProducto() {
  
   return (
     <div className={styles.formProducto_container}>
+      <h1>Crear nuevo producto</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.grupo}>
           <div className={styles.campos}>
@@ -76,7 +77,7 @@ function CrearProducto() {
         </div>
         <div className={styles.grupo}>
           <div>
-            <label htmlFor="enStock">¿El porducto está disponible? </label>
+            <label htmlFor="enStock">¿El producto está disponible? </label>
             <input 
               type="checkbox"
               name="enStock"

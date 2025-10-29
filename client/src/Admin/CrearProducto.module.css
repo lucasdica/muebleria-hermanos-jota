@@ -6,6 +6,12 @@
   margin: 40px auto;
 }
 
+.formProducto_container h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--color-prin);
+}
+
 .formProducto_container form {
   display: flex;
   flex-direction: column;
@@ -13,9 +19,9 @@
 }
 
 .grupo {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }
 
 .campos {

@@ -32,7 +32,6 @@
 
 .precioComprar {
     display: flex;
-    /* justify-content: space-around; */
     align-items: center;
     width: 30vw;
 }
@@ -50,6 +49,30 @@ th {
 th, td {
     padding: 1px 2px;
     border-top: 2px solid black;
+}
+
+.edicion {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.icon_delete, .icon_edit {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: bisque;
+}
+
+.icon_delete:hover {
+    background-color: var(--color-det-fem);
+}
+
+.icon_edit:hover {
+    background-color: var(--color-sec);
 }
 
 /* Medias */
