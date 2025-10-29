@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import { RiDeleteBin2Line, RiEdit2Line } from "react-icons/ri";
 import styles from "./ProductDetail.module.css";
 import AgregarAlCarrito from "../Carrito/AgregarAlCarrito";
 import ModalEditarProducto from "../ModalEditarProducto/ModalEditarProducto";
+import ModalEliminarProducto from "../ModalEliminarProducto/ModalEliminarProducto";
 
 function ProductDetail({ agregar }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [producto, setProducto] = useState(null);
   const [error, setError] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [mostrarModalEliminar, setMostrarModalEliminar] = useState(false);
 
   useEffect(() => {
     async function fetchProducto() {
@@ -43,6 +46,12 @@ function ProductDetail({ agregar }) {
   const handleGuardarCambios = (productoEditado) => {
     setProducto(productoEditado);
     // Acá se puede agregar la lógica del back
+  };
+
+  const handleEliminarProducto = () => {
+    // Acá se puede agregar la lógica para eliminar el producto de la db
+    alert(`El producto "${producto.nombre}" fue eliminado.`);
+    navigate("/productos");
   };
 
   if (error) return <h2>{error}</h2>;
@@ -102,7 +111,7 @@ function ProductDetail({ agregar }) {
         </section>
         {/* Editar o Eliminar */}
          <section className={styles.edicion}>
-           <div className={styles.icon_delete} onClick={""}>
+           <div className={styles.icon_delete} onClick={() => setMostrarModalEliminar(true)}>
              <RiDeleteBin2Line className={styles.icon} />
              <span className={styles.icon_text}>Eliminar</span>
            </div>
@@ -118,6 +127,14 @@ function ProductDetail({ agregar }) {
           producto={producto}
           onClose={() => setMostrarModal(false)}
           onSave={handleGuardarCambios}
+        />
+      )}
+
+      {mostrarModalEliminar && (
+        <ModalEliminarProducto
+          producto={producto}
+          onClose={() => setMostrarModalEliminar(false)}
+          onConfirm={handleEliminarProducto}
         />
       )}
     </div>
