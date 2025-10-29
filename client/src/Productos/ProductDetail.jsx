@@ -86,6 +86,10 @@ function ProductDetail({agregar}) {
             </tbody>
           </table>
         </section>
+        <section className={styles.edicion}>
+          <button className={styles.edit}>Editar</button>
+          <button className={styles.delete}>Eliminar</button>
+        </section>
       </aside>
     </div>
   );
