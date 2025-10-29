@@ -7,10 +7,10 @@ function CrearProducto() {
     nombre: '',
     precio: '',
     enStock: '',
-    coloresDisponibles: [''],
+    coloresDisponibles: '',
     medidas: '',
-    materiales: [''],
-    acabado: [''],
+    materiales: '',
+    acabado: '',
     peso: '',
     certificacion: '',
     descripcion: '',
@@ -87,7 +87,7 @@ function CrearProducto() {
           <div className={styles.campos}>
             <label htmlFor="coloresDisponibles">Colores: </label>
             <input
-              type=""
+              type="text"
               name="coloresDisponibles"
               value={formProducto.coloresDisponibles}
               onChange={handleChange}
@@ -107,7 +107,7 @@ function CrearProducto() {
           <div className={styles.campos}>
             <label htmlFor="materiales">Materiales: </label>
             <input
-              type=""
+              type="text"
               name="materiales"
               value={formProducto.materiales}
               onChange={handleChange}
@@ -116,7 +116,7 @@ function CrearProducto() {
           <div className={styles.campos}>
             <label htmlFor="acabado">Acabado: </label>
             <input
-              type=""
+              type="text"
               name="acabado"
               value={formProducto.acabado}
               onChange={handleChange}
