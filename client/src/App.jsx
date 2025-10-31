@@ -1,15 +1,13 @@
 import './App.css'
 import { useState } from "react";
 import { Routes, Route } from 'react-router-dom'
-
 import Navbar from './Navbar/Navbar'
-import HeroBanner from './HeroBanner/HeroBanner'
-import ProductosDestacados from './ProductosDestacados/ProductosDestacados'
-import AboutUs from './AboutUs/AboutUs'
-import Contacto from './Contacto/Contacto'
+import Contacto from './pages/Contacto'
 import Footer from './Footer/Footer'
-import ProductPage from './Productos/ProductPage'
+import ProductPage from './pages/ProductPage'
 import ProductDetail from './Productos/ProductDetail'
+import Admin from './Admin/admin';
+import Homepage from './pages/Homepage';
 
 function App() {
   const [contadorCarrito, setContadorCarrito] = useState(0);
@@ -21,16 +19,11 @@ function App() {
     <>
       <Navbar contador={contadorCarrito} />
       <Routes>
-        <Route index element={
-          <>
-            <HeroBanner/>
-            <ProductosDestacados/>
-            <AboutUs/>
-          </>
-        }/>
+        <Route path='/' element={<Homepage />} />
         <Route path='/productos' element={<ProductPage agregar={agregarAlCarrito} />} />
         <Route path="/producto/:id" element={<ProductDetail agregar={agregarAlCarrito}/>} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/admin/crear-producto" element={<Admin />} />
       </Routes>
       <Footer/>
     </>

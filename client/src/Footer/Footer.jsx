@@ -1,4 +1,5 @@
 import styles from './footer.module.css';
+import { Link } from 'react-router-dom';
 
 function Footer(){
     return(
@@ -25,6 +26,7 @@ function Footer(){
                         <p>Ventas: <a href="mailto:ventas@hermanosjota.com.ar">ventas@hermanosjota.com.ar</a></p>
                         <p>Sitio web: <a href="https://www.hermanosjota.com.ar" target="_blank">www.hermanosjota.com.ar</a></p>
                         <p>Instagram: <a href="https://instagram.com/hermanosjota_ba" target="_blank">@hermanosjota_ba</a></p>
+                        <Link to="/admin/crear-producto">Administrador</Link>
                     </div>
                 </div>
                 <p className={styles.copyright}>© 2025 Hermanos Jota. Todos los derechos reservados.</p>
