@@ -1,62 +1,177 @@
 import { Router } from "express";
-import {leerInventario} from "../utils/index.js"
+import { Product } from "../modelos/modelo.product.js";
 
 const rutaProductos = Router();
 
-//get /api/productos: devuelve toda la lista de productos en json
-rutaProductos.get('/', async (req, res, next) => {
+// //get /api/productos: devuelve toda la lista de productos en json
+// rutaProductos.get('/', async (req, res, next) => {
     
-    const catalogo = await leerInventario();
+//     const catalogo = await leerInventario();
 
-    if(!catalogo){
-        const error = new Error("No se puedo leer el catalogo");
-        error.status = 404;
-        return next(error);
+//     if(!catalogo){
+//         const error = new Error("No se puedo leer el catalogo");
+//         error.status = 404;
+//         return next(error);
+//     }
+
+//     res.status(200).json(catalogo);
+
+// });
+
+// //get /api/producto/:id : devuelve la info de ese producto en json
+// rutaProductos.get('/:id', async (req, res, next) => {
+
+//     const id = req.params.id;
+
+//     //console.log(typeof(id)); es String
+
+//     // if(!Number.isInteger(id)){
+//     //     const error = new Error("Id invalido");
+//     //     error.status = 404;
+//     //     return next(error);
+//     // }
+
+//     const catalogo = await leerInventario();
+
+//     if(!catalogo) {
+//         const error = new Error("No se puedo leer el catalogo");
+//         error.status = 404;
+//         return next(error);
+//     }
+
+//     const producto = catalogo.find((mueble) => mueble.ID == id)
+
+//     if(!producto) {
+//         const error = new Error("Mueble no encontrado");
+//         error.status = 404;
+//         return next(error);
+//     }
+
+//     res.status(200).json(producto);
+// })
+
+// **********RUTAS CRUD**********
+
+// GET /api/productos, muesta todos los productos
+rutaProductos.get('/', async (req, res, next) =>{
+    try {
+        const products = await Product.find({});
+
+        res.status(200).json(products);
+    } catch (error) {
+        console.error('Error al obtener los products', error.message);
+        error.status = 400;
+        next(error);
     }
+})
+// GET /api/productos/:id, muestra un producto por su id
+rutaProductos.get('/:id', async (req, res, next) =>{
+    try {
+        const productId = req.params.id; 
+        
+        console.log(`El id buscado es: ${productId}`);
+        const productBuscado = await Product.findById(productId);
 
-    res.status(200).json(catalogo);
+        if(!productBuscado){
+            const error = new Error(`No se encontro el producto especificado, Id: ${productId}`);
+            error.status = 400;
+            return next(error);
+        }
 
-});
+        console.log(`El producto encontrado es: ${productBuscado}`);
 
-//get /api/producto/:id : devuelve la info de ese producto en json
-rutaProductos.get('/:id', async (req, res, next) => {
-
-    const id = req.params.id;
-
-    //console.log(typeof(id)); es String
-
-    // if(!Number.isInteger(id)){
-    //     const error = new Error("Id invalido");
-    //     error.status = 404;
-    //     return next(error);
-    // }
-
-    const catalogo = await leerInventario();
-
-    if(!catalogo) {
-        const error = new Error("No se puedo leer el catalogo");
-        error.status = 404;
-        return next(error);
+        res.status(200).json(productBuscado);
+    } catch (error) {
+        console.error(`Error al buscar el producto`, error.message);
+        error.status(400);
+        next(error);
     }
-
-    const producto = catalogo.find((mueble) => mueble.ID == id)
-
-    if(!producto) {
-        const error = new Error("Mueble no encontrado");
-        error.status = 404;
-        return next(error);
-    }
-
-    res.status(200).json(producto);
 })
 
-/*
-rutas CRUD
-GET /api/productos
-GET /api/productos/:id
-POST /api/productos
-PUT /api/productos/:id
-DELETE /api/productos/:id
-*/
+// POST /api/productos, crear nuevo producto
+rutaProductos.post('/', async (req, res, next) => {
+try {
+    const datosNuevos = req.body;
+    
+    const nuevoProduct = new Product(datosNuevos);
+    
+    const productGuardado = await nuevoProduct.save();
+    
+    console.log(`Los datos guardados son: ${JSON.stringify(productGuardado, null, 2)}`);
+
+    res.status(201).json({
+        mensaje: 'Product creado con exito',
+        usuario: productGuardado
+    });
+
+} catch (error) {
+    
+    console.error('Error al crear el Product',error.message);
+
+    error.status = 400;
+    next(error);
+}
+})
+
+// PUT /api/productos/:id, actualiza un product por su id
+rutaProductos.put('/:id', async (req, res, next) => {
+    try {
+        
+        const productId = req.params.id;
+        const datosActualizados = req.body;
+        console.log(`Actualizando product con Id: ${productId}, con los datos: ${datosActualizados}`);
+
+        const productActualizado = await Product.findByIdAndUpdate(
+            productId,
+            datosActualizados,
+            {
+                new: true, runValidators: true
+            });
+
+        if(!productActualizado) {
+            const error = new Error(`No se encontro el product con Id: ${productId}`);
+            error.status(404);
+            return next(error);
+        }
+
+        res.status(200).json({
+            mensaje: 'Usuario actualizado con exito',
+            usuario: productActualizado
+        });
+
+    } catch (error) {
+        console.error(`Error al actualizar el producto`, error.message);
+        error.status(400);
+        next(error);
+    }
+})
+
+// DELETE /api/productos/:id, elimina un product por su id
+rutaProductos.delete('/:id', async (req, res, next) => {
+    try {
+        const productId = req.params.id;
+
+        console.log(`Se eliminara el product con id: ${productId}`);
+        
+        const productEliminado = await Product.findByIdAndDelete(productId);
+        
+        if(!productEliminado) {
+            const error = new Error(`No se encontro el product con Id: ${productId}`);
+            error.status = 404;
+            return next(error);
+        }
+
+        res.status(200).json({
+            mensaje: `Product con id: ${productId} eliminado con exito`,
+            product: productEliminado
+        });
+
+    } catch (error) {
+        console.error(`Error al intentar eliminar el producto`);
+        error.status = 400;
+        next(error);
+    }
+})
+
 
 export default rutaProductos;

@@ -5,6 +5,4 @@ export function rutaNoEncontrada(req, res, next) {
         metodo: req.method,
         timestamp: new Date().toISOString()
     });
-
-    next()
 }

@@ -1,42 +1,36 @@
 import express from 'express';
+import 'dotenv/config'
 
 //rutas
 import rutaProductos from './rutas/ruta.productos.js'
-import { rutaNoEncontrada } from './middlewares/rutaNoEncontrada.js';
 
 //middlewares
 import { logger } from './middlewares/logger.js';
+import { rutaNoEncontrada } from './middlewares/rutaNoEncontrada.js';
+import { errores } from './middlewares/errores.js';
 
+//BD
+import { conectarBD } from './utils/baseDeDatos.js';
 
 const app = express();
 
+app.use(express.json());
+
+conectarBD(process.env.MONGODB);
+
 const PUERTO = process.env.PORT || 5000;
 
-//***********MIDDLEWARE***********//
-//express.json() para las rutas POST
-app.use(express.json());
-//uno global que haga console.log() de las peticiones
 app.use(logger)
-//errores
+
 
 //rutas
 app.use('/api/productos', rutaProductos);
+
 //ruta desconocida
-app.use(/.*/, rutaNoEncontrada); //app.all('*', rutaNoEncontrada);
+app.use(/.*/, rutaNoEncontrada);
 
-//mejorar
-app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    const mensaje = err.message || "Error interno del servidor";
-
-    console.error({
-        statusCode,
-        mensaje,
-        stack: err.stack
-    });
-
-    res.status(statusCode).json({error: mensaje});
-})
+//middleware errores
+app.use(errores);
 
 app.listen(PUERTO, (error) => {
     if(error) {

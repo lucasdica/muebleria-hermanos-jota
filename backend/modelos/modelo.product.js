@@ -1,11 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const productSchema = new mongoose.Schema({
-    ID: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+    // id: {
+    //     type: Number,
+    //     // required: true,
+    //     unique: true
+        
+    // },
     nombre: {
         type: String,
         required: true,
@@ -16,18 +17,18 @@ const productSchema = new mongoose.Schema({
         required: true,
         min: 0
     },
-    // enStock: {
-    //     type: Boolean,
-    //     default: productSchema.stock > 0
-    // },
-    stock: {
+    enStock: {
         type: Number,
         default: 0
     },
-    coloresDisponibles: [{
+    // stock: {
+    //     type: Number,
+    //     default: 0
+    // },
+    coloresDisponibles: {
         type: String,
         trim: true
-    }],
+    },
     medidas: {
         type: String,
         trim: true
@@ -40,9 +41,9 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true
     }],
-    regulacion: {
-        type: String,
-        trim: true
+    peso: {
+        type: Number,
+        default: 0
     },
     certificacion: {
         type: String,
@@ -63,7 +64,8 @@ const productSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true,
-    collection: 'Products'
+    collection: 'Products',
+    strict: false //puedo agregarle cosas que no estan en el schema, se agregan a lo ultimo
 });
 
-module.exports = mongoose.model('Product', productSchema);
+export const Product = mongoose.model('Product', productSchema);
