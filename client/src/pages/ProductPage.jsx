@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Buscador from '../Buscador/Buscador';
-import ProductCard from './ProductCard';
+import ProductCard from '../Productos/ProductCard';
 
 function ProductPage({ agregar }) {
   const [productos, setProductos] = useState([]);
