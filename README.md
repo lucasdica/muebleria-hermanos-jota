@@ -1,8 +1,6 @@
 # Mueblería Hermanos Jota
 
 ## 🧑‍💻 Integrantes
-- Bautista Bejarano
-- Guido Verese
 - Leandro Quiroga
 - Lucas Agustin Di Catarina
 
