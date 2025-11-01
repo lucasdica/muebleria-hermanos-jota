@@ -9,7 +9,7 @@ function ProductPage({ agregar }) {
   useEffect(() => {
     async function cargarProductos() {
       try {
-        const respuesta = await fetch(import.meta.env.BASE_URL + "public/data/catalogo.json");
+        const respuesta = await fetch(import.meta.env.BASE_URL + "/data/catalogo.json");
 
         const datos = await respuesta.json();
         setProductos(datos);
