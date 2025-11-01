@@ -6,7 +6,7 @@ import Contacto from './pages/Contacto'
 import Footer from './Footer/Footer'
 import ProductPage from './pages/ProductPage'
 import ProductDetail from './Productos/ProductDetail'
-import Admin from './Admin/admin';
+import Admin from './Admin/Admin';
 import Homepage from './pages/Homepage';
 
 function App() {
