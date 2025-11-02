@@ -13,9 +13,9 @@ const ModalEditarProducto = ({ producto, onClose, onSave }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSave(formData);
+    await onSave(formData);
     onClose();
   };
 
@@ -25,40 +25,49 @@ const ModalEditarProducto = ({ producto, onClose, onSave }) => {
         <h2>Editar producto</h2>
 
         <form onSubmit={handleSubmit}>
-            <label>Nombre</label>
-            <input
-                type="text"
-                name="nombre"
-                value={formData.nombre || ""}
-                onChange={handleChange}
-            />
+          <label>Nombre</label>
+          <input
+            type="text"
+            name="nombre"
+            value={formData.nombre || ""}
+            onChange={handleChange}
+          />
 
-            <label>Precio</label>
-            <input
-                type="number"
-                name="precio"
-                value={formData.precio || ""}
-                onChange={handleChange}
-            />
+          <label>Precio</label>
+          <input
+            type="number"
+            name="precio"
+            value={formData.precio || ""}
+            onChange={handleChange}
+          />
 
-            <label>Descripción</label>
-            <textarea
-                name="descripcion"
-                value={formData.descripcion || ""}
-                onChange={handleChange}
-            />
+          <label>Descripción</label>
+          <textarea
+            name="descripcion"
+            value={formData.descripcion || ""}
+            onChange={handleChange}
+          />
 
-            <label>Imagen</label>
-            <textarea
-                name="descripcion"
-                value={formData.imagen || ""}
-                onChange={handleChange}
-            />
+          <label>Imagen (URL)</label>
+          <input
+            type="text"
+            name="imagen"
+            value={formData.imagen || ""}
+            onChange={handleChange}
+          />
 
-            <div className={styles.botones}>
-                <button type="submit" className={styles.btnSubmit}>Guardar cambios</button>
-                <button type="button" onClick={onClose} className={styles.btnCancel}>Cancelar</button>
-            </div>
+          <div className={styles.botones}>
+            <button type="submit" className={styles.btnSubmit}>
+              Guardar cambios
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className={styles.btnCancel}
+            >
+              Cancelar
+            </button>
+          </div>
         </form>
       </div>
     </div>

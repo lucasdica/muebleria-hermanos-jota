@@ -7,17 +7,26 @@ function ProductoDestacado() {
     useEffect(() => {
         cargarProductosDestacados();
     }, []);
-
+    
     async function cargarProductosDestacados() {
-        //terminar
         try {
-            const respuesta = await fetch(import.meta.env.BASE_URL + "public/data/catalogo.json"); 
-            const datos = await respuesta.json();
+            const respuesta = await fetch("/api/productos", {
+            method: "GET",
+            headers: {
+                'Accept': "application/json",
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Error al obtener los productos.");
+        }
+          const datos = await respuesta.json();
             setProductos(datos.slice(0, 4));
         } catch (error) {
-            console.error('Error cargando productos:', error);
+            console.error("Error cargando productos:", error);
         }
-    }
+        }  
 
     return(
         <div className={styles.productosContainer}>

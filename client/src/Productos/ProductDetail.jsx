@@ -31,13 +31,13 @@ function ProductDetail({ agregar }) {
         //console.log(mueble.status);
 
         //if (mueble.error.includes('Cast to ObjectId failed for value')) {
-        if(mueble.status === 400){  
+        if (mueble.status === 400) {
           setError("ID no válido");
           return;
         }
 
         //if (mueble.error.includes('No se encontro el producto')) {
-        if(mueble.status === 404){
+        if (mueble.status === 404) {
           setError("Producto no encontrado");
           return;
         }
@@ -53,21 +53,53 @@ function ProductDetail({ agregar }) {
     fetchProducto();
   }, [id]);
 
-  const handleGuardarCambios = (productoEditado) => {
-    setProducto(productoEditado);
-    // Acá se puede agregar la lógica del back
+  const handleGuardarCambios = async (productoEditado) => {
+    try {
+      const respuesta = await fetch(`/api/productos/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productoEditado),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("Error al actualizar el producto");
+      }
+
+      const productoActualizado = await respuesta.json();
+      setProducto(productoActualizado);
+
+      alert("Producto actualizado correctamente.");
+    } catch (error) {
+      console.error("Error al actualizar el producto:", error);
+      alert("Hubo un problema al actualizar el producto.");
+    }
   };
 
-  const handleEliminarProducto = () => {
-    // Acá se puede agregar la lógica para eliminar el producto de la db
-    alert(`El producto "${producto.nombre}" fue eliminado.`);
-    navigate("/productos");
+
+  const handleEliminarProducto = async () => {
+    try {
+      const respuesta = await fetch(`/api/productos/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("Error al eliminar el producto");
+      }
+
+      alert(`El producto "${producto.nombre}" fue eliminado.`);
+      navigate("/productos");
+    } catch (error) {
+      console.error("Error eliminando producto:", error);
+      alert("Hubo un problema al eliminar el producto.");
+    }
   };
 
   if (error) return <h2>{error}</h2>;
   if (!producto) return <h2>Cargando producto...</h2>;
 
-  const excluir = ["ID", "nombre", "precio", "enStock", "descripcion", "imagen"];
+  const excluir = ["_id", "nombre", "precio", "enStock", "descripcion", "imagen"];
 
   return (
     <div className={styles.contenedorProducto}>
