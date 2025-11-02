@@ -72,7 +72,8 @@ function ProductDetail({ agregar }) {
       setProducto(productoActualizado);
 
       alert("Producto actualizado correctamente.");
-      navigate("/productos");
+      // navigate("/productos");
+      window.location.href = `${API_URL}/${id}`;
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
       alert("Hubo un problema al actualizar el producto.");
