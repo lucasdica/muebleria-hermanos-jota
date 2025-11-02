@@ -9,8 +9,11 @@ function ProductoDestacado() {
     }, []);
     
     async function cargarProductosDestacados() {
+
+        const API_URL = import.meta.env.VITE_API_URL;
+
         try {
-            const respuesta = await fetch("https://muebleria-hermanos-jota-mry8.onrender.com/api/productos", {
+            const respuesta = await fetch(`${API_URL}`, {
             method: "GET",
             headers: {
                 'Accept': "application/json",

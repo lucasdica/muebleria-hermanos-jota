@@ -16,9 +16,11 @@ function ProductDetail({ agregar }) {
 
   useEffect(() => {
     async function fetchProducto() {
-      try {
 
-        const respuesta = await fetch(`https://muebleria-hermanos-jota-mry8.onrender.com/api/productos${id}`, {
+      const API_URL = import.meta.env.VITE_API_URL;
+
+      try {
+        const respuesta = await fetch(`${API_URL}${id}`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -55,7 +57,7 @@ function ProductDetail({ agregar }) {
 
   const handleGuardarCambios = async (productoEditado) => {
     try {
-      const respuesta = await fetch(`/api/productos/${id}`, {
+      const respuesta = await fetch(`${API_URL}${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +82,7 @@ function ProductDetail({ agregar }) {
 
   const handleEliminarProducto = async () => {
     try {
-      const respuesta = await fetch(`/api/productos/${id}`, {
+      const respuesta = await fetch(`${API_URL}${id}`, {
         method: "DELETE",
       });
 
