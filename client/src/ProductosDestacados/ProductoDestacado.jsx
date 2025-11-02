@@ -10,7 +10,7 @@ function ProductoDestacado() {
     
     async function cargarProductosDestacados() {
         try {
-            const respuesta = await fetch("/api/productos", {
+            const respuesta = await fetch("https://muebleria-hermanos-jota-mry8.onrender.com/api/productos", {
             method: "GET",
             headers: {
                 'Accept': "application/json",
