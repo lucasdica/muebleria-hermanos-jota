@@ -72,6 +72,7 @@ function ProductDetail({ agregar }) {
       setProducto(productoActualizado);
 
       alert("Producto actualizado correctamente.");
+      navigate("/productos");
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
       alert("Hubo un problema al actualizar el producto.");
