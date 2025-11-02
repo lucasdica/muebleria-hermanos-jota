@@ -1,12 +1,13 @@
 import styles from './CrearProducto.module.css';
 // import mongoose from "mongoose";
 import { useState } from "react";
+import { API_URL } from "../config";
 
 function CrearProducto() {
   const [formProducto, setFormProducto] = useState({
     nombre: '',
     precio: '',
-    enStock: '',
+    enStock: false,
     coloresDisponibles: '',
     medidas: '',
     materiales: '',
@@ -18,39 +19,39 @@ function CrearProducto() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
     setFormProducto(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: type === 'number' ? Number(value) : value
     }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
- 
- 
+
     try {
-      const response = await fetch('/api/productos', {
+      const response = await fetch(`${API_URL}`, {
         method: 'POST',
         headers: {
+          'Accept': "application/json",
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formProducto),
       });
- 
+
       if (!response.ok) {
         throw new Error('El registro falló.');
       }
- 
+
       const result = await response.json();
       alert(`¡Registro exitoso para ${result.nombre}!`);
-      setFormProducto({ nombre: '', precio: '', enStock: '', coloresDisponibles: [''], medidas: '', materiales: [''], acabado: [''], peso: '', certificacion: '', descripcion: '', imagen: '', });
- 
+      setFormProducto({ nombre: '', precio: '', enStock: false, coloresDisponibles: '', medidas: '', materiales: '', acabado: '', peso: '', certificacion: '', descripcion: '', imagen: '', });
+
     } catch (error) {
       alert(error.message);
     }
   };
- 
+
   return (
     <div className={styles.formProducto_container}>
       <h1>Crear nuevo producto</h1>
@@ -78,11 +79,16 @@ function CrearProducto() {
         <div className={styles.grupo}>
           <div>
             <label htmlFor="enStock">¿El producto está disponible? </label>
-            <input 
+            <input
               type="checkbox"
               name="enStock"
-              value={formProducto.enStock}
-              onChange={handleChange}
+              checked={formProducto.enStock}
+              onChange={(e) =>
+                setFormProducto(prev => ({
+                  ...prev,
+                  enStock: e.target.checked,
+                }))
+              }
             />
           </div>
           <div className={styles.campos}>
@@ -127,7 +133,7 @@ function CrearProducto() {
         <div className={styles.grupo}>
           <div className={styles.campos}>
             <label htmlFor="peso">Peso: </label>
-            <input 
+            <input
               type="number"
               name="peso"
               value={formProducto.peso}
@@ -136,7 +142,7 @@ function CrearProducto() {
           </div>
           <div className={styles.campos}>
             <label htmlFor="certificacion">Certificación: </label>
-            <input 
+            <input
               type="text"
               name="certificacion"
               value={formProducto.certificacion}
@@ -144,24 +150,24 @@ function CrearProducto() {
             />
           </div>
         </div>
-          <div className={styles.campos}>
-            <label htmlFor="descripcion">Descripción: </label>
-            <input 
-              type="text"
-              name="descripcion"
-              value={formProducto.descripcion}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.campos}>
-            <label htmlFor="imagen">URL de la imagen: </label>
-            <input 
-              type="text"
-              name="imagen"
-              value={formProducto.imagen}
-              onChange={handleChange}
-            />
-          </div>
+        <div className={styles.campos}>
+          <label htmlFor="descripcion">Descripción: </label>
+          <input
+            type="text"
+            name="descripcion"
+            value={formProducto.descripcion}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.campos}>
+          <label htmlFor="imagen">URL de la imagen: </label>
+          <input
+            type="text"
+            name="imagen"
+            value={formProducto.imagen}
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">Crear Producto</button>
       </form>
     </div>
