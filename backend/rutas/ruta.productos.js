@@ -74,7 +74,7 @@ rutaProductos.get('/:id', async (req, res, next) =>{
 
         if(!productBuscado){
             const error = new Error(`No se encontro el producto especificado, Id: ${productId}`);
-            error.status = 400;
+            error.status = 404;
             return next(error);
         }
 
@@ -83,7 +83,7 @@ rutaProductos.get('/:id', async (req, res, next) =>{
         res.status(200).json(productBuscado);
     } catch (error) {
         console.error(`Error al buscar el producto`, error.message);
-        error.status(400);
+        error.status = 400;
         next(error);
     }
 })
