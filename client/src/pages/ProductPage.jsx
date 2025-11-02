@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Buscador from "../Buscador/Buscador";
 import ProductCard from "../Productos/ProductCard";
+import { API_URL } from "../config";
 
 function ProductPage({ agregar }) {
   const [productos, setProductos] = useState([]);
@@ -8,8 +9,6 @@ function ProductPage({ agregar }) {
 
   useEffect(() => {
     async function cargarProductos() {
-
-      const API_URL = import.meta.env.VITE_API_URL;
 
       try {
         const respuesta = await fetch(`${API_URL}`, {
