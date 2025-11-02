@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './ProductoDestacado.module.css';
+import { API_URL } from "../config";
 
 function ProductoDestacado() {
     const [productos, setProductos] = useState([]);
@@ -9,8 +10,6 @@ function ProductoDestacado() {
     }, []);
     
     async function cargarProductosDestacados() {
-
-        const API_URL = import.meta.env.VITE_API_URL;
 
         try {
             const respuesta = await fetch(`${API_URL}`, {
