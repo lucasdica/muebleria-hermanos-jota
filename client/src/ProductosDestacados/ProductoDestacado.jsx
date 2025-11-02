@@ -9,6 +9,7 @@ function ProductoDestacado() {
     }, []);
 
     async function cargarProductosDestacados() {
+        //terminar
         try {
             const respuesta = await fetch(import.meta.env.BASE_URL + "public/data/catalogo.json"); 
             const datos = await respuesta.json();

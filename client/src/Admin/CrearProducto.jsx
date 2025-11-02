@@ -30,7 +30,7 @@ function CrearProducto() {
  
  
     try {
-      const response = await fetch('', { //Falta completar
+      const response = await fetch('/api/productos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

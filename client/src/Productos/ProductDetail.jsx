@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { RiDeleteBin2Line, RiEdit2Line } from "react-icons/ri";
 import styles from "./ProductDetail.module.css";
 import AgregarAlCarrito from "../Carrito/AgregarAlCarrito";
@@ -17,17 +17,27 @@ function ProductDetail({ agregar }) {
   useEffect(() => {
     async function fetchProducto() {
       try {
-        const respuesta = await fetch(import.meta.env.BASE_URL + "public/data/catalogo.json");
-        const datos = await respuesta.json();
 
-        if (!id || isNaN(id)) {
+        const respuesta = await fetch(`/api/productos/${id}`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const mueble = await respuesta.json();
+
+        //console.log(mueble.status);
+
+        //if (mueble.error.includes('Cast to ObjectId failed for value')) {
+        if(mueble.status === 400){  
           setError("ID no válido");
           return;
         }
 
-        const mueble = datos.find((p) => p.ID === Number(id));
-
-        if (!mueble) {
+        //if (mueble.error.includes('No se encontro el producto')) {
+        if(mueble.status === 404){
           setError("Producto no encontrado");
           return;
         }
@@ -110,16 +120,16 @@ function ProductDetail({ agregar }) {
           </table>
         </section>
         {/* Editar o Eliminar */}
-         <section className={styles.edicion}>
-           <div className={styles.icon_delete} onClick={() => setMostrarModalEliminar(true)}>
-             <RiDeleteBin2Line className={styles.icon} />
-             <span className={styles.icon_text}>Eliminar</span>
-           </div>
-           <div className={styles.icon_edit} onClick={() => setMostrarModal(true)}>
-             <RiEdit2Line className={styles.icon} />
+        <section className={styles.edicion}>
+          <div className={styles.icon_delete} onClick={() => setMostrarModalEliminar(true)}>
+            <RiDeleteBin2Line className={styles.icon} />
+            <span className={styles.icon_text}>Eliminar</span>
+          </div>
+          <div className={styles.icon_edit} onClick={() => setMostrarModal(true)}>
+            <RiEdit2Line className={styles.icon} />
             <span className={styles.icon_text}>Editar</span>
           </div>
-         </section>
+        </section>
       </aside>
 
       {mostrarModal && (

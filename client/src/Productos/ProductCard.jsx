@@ -16,8 +16,8 @@ function ProductCard({ productos, agregar }) {
       ) : (
         productos.map((producto) => (
           <div key={producto.ID} className={styles.card}>
-            <img src={producto.imagen} alt={producto.nombre} onClick={() => handleClickProducto(producto.ID)} />
-            <div className={styles.infoProductCard} onClick={() => handleClickProducto(producto.ID)}>
+            <img src={producto.imagen} alt={producto.nombre} onClick={() => handleClickProducto(producto._id)} />
+            <div className={styles.infoProductCard} onClick={() => handleClickProducto(producto._id)}>
               <h3>{producto.nombre}</h3>
               <p>${producto.precio}</p>
             </div>
