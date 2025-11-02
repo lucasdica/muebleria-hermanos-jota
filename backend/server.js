@@ -1,5 +1,9 @@
 import express from 'express';
 import 'dotenv/config'
+import cors from 'cors'
+
+//cors
+import { corsOptions } from './cors/cors.js';
 
 //rutas
 import rutaProductos from './rutas/ruta.productos.js'
@@ -15,6 +19,8 @@ import { conectarBD } from './utils/baseDeDatos.js';
 const app = express();
 
 app.use(express.json());
+
+app.use(cors(corsOptions));
 
 conectarBD(process.env.MONGODB);
 
