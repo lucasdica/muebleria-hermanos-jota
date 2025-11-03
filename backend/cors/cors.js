@@ -1,4 +1,4 @@
-const origenesPermitidos = 'https://muebleria-hermanos-jota-psi.vercel.app/';
+const origenesPermitidos = 'https://muebleria-hermanos-jota-psi.vercel.app';
 
 export const corsOptions = {
   origin: (origin, callback) => {
