@@ -10,8 +10,8 @@
 
 **Mueblería Hermanos Jota** es una aplicación web desarrollada para la gestión de productos, ventas y clientes de una mueblería.  
 El sistema está dividido en dos partes:
-- **Backend:** **Node.js** y **Express**. [https://muebleria-hermanos-jota-mry8.onrender.com/api/productos]
-- **Frontend:** **React**. [https://muebleria-hermanos-jota-psi.vercel.app/]
+- **Backend:** **Node.js** y **Express**. [<a href="https://muebleria-hermanos-jota-mry8.onrender.com/api/productos" target="_blank" rel="noopener noreferrer">https://muebleria-hermanos-jota-mry8.onrender.com/api/productos</a>]
+- **Frontend:** **React**. [<a href="https://muebleria-hermanos-jota-psi.vercel.app/" target="_blank" rel="noopener noreferrer">https://muebleria-hermanos-jota-psi.vercel.app/</a>]
 
 ---
 
