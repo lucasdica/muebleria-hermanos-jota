@@ -16,6 +16,14 @@ import { errores } from './middlewares/errores.js';
 //BD
 import { conectarBD } from './utils/baseDeDatos.js';
 
+const PUERTO = 5000;
+
+// //controladores, '*' importa todo el modulo bajo un alias
+// import * as usuarioControlador from './controller/usuario.controller.js'
+
+// //lo utilizo asi
+// usuarioControlador.crearUsuario();
+
 const app = express();
 
 app.use(express.json());
@@ -24,10 +32,7 @@ app.use(cors(corsOptions));
 
 conectarBD(process.env.MONGODB);
 
-const PUERTO = process.env.PORT || 5000;
-
 app.use(logger)
-
 
 //rutas
 app.use('/api/productos', rutaProductos);
@@ -42,6 +47,7 @@ app.listen(PUERTO, (error) => {
     if(error) {
         console.log(error);
     }else{
-        console.log(`Servidor inicializado con exito.....http://localhost:${PUERTO}`)
+        console.log(`Servidor escuchando en el puerto ${PUERTO}`);
+        console.log(`Entorno ${process.env.ENTORNO}`);
     }
 })
