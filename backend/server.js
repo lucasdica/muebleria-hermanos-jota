@@ -31,7 +31,12 @@ app.use(express.json());
 
 app.use(cors(corsOptions));
 
-conectarBD(process.env.MONGODB);
+const exitoDB = conectarBD(process.env.MONGODB);
+
+if(!exitoDB){
+    console.error('Error al intentar conectar la base de datos');
+    process.exit(1);
+}
 
 app.use(logger)
 
