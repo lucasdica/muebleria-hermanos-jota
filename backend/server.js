@@ -7,6 +7,7 @@ import { corsOptions } from './cors/cors.js';
 
 //rutas
 import rutaProductos from './rutas/ruta.productos.js'
+import rutasUsuarios from './rutas/ruta.usuario.js'
 
 //middlewares
 import { logger } from './middlewares/logger.js';
@@ -36,6 +37,7 @@ app.use(logger)
 
 //rutas
 app.use('/api/productos', rutaProductos);
+app.use('/api/usuarios', rutasUsuarios);
 
 //ruta desconocida
 app.use(/.*/, rutaNoEncontrada);
