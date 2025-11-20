@@ -1,10 +1,11 @@
 import {Router} from 'express'
 import {Usuario} from '../modelos/modelo.usuario.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const rutasUsuario = Router();
 
-rutasUsuario.post('/registro', async (req, res, next) =>{
+rutasUsuario.post('/registro', async (req, res) =>{
     try {
         
         const { nombre, apellido, email, fechaNacimiento, clave, fotoPerfil } = req.body;
@@ -41,6 +42,40 @@ rutasUsuario.post('/registro', async (req, res, next) =>{
     } catch (error) {
         res.status(500).json({mensaje: 'Error interno del servidor'});
     }
+})
+
+rutasUsuario.post('/login', async (req, res) => {
+try {
+    
+    const usuario = await Usuario.findOne({email: req.body.email});
+
+    if(!usuario) {
+        return res.status(400).json({mensaje: 'Credenciales invalidas'});
+    }
+
+    const claveValida = await bcrypt.compare(req.body.clave, usuario.clave);
+
+    if(!claveValida){
+        return res.status(400).json({mensaje: 'Credenciales invalidas'});
+    }
+
+    const jwtUsuario = jwt.sign(
+        {id: usuario._id, email: usuario.email},
+        process.env.SECRETO_JWT,
+        {expiresIn: '1h'}
+    );
+
+    res.status(200).json({
+        jwtUsuario,
+        usuario: {
+            id: usuario._id,
+            email: usuario.email
+        }
+    });
+
+} catch (error) {
+    res.status(500).json({mensaje: 'Error interno del servidor'})
+}
 })
 
 
