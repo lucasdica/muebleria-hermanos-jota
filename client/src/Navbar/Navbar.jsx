@@ -22,8 +22,6 @@ function Navbar({ contador }) {
 
       <ul className={`${styles.menu} ${open ? styles.open : ""}`}>
         <li><HashLink smooth to="/#inicio">Inicio</HashLink></li>
-        <li><HashLink smooth to="/#destacado">Destacado</HashLink></li>
-        <li><HashLink smooth to="/#nosotros">Nosotros</HashLink></li>
         <li><Link to="/productos">Productos</Link></li>
         <li><Link to="/contacto">Contacto</Link></li>
 

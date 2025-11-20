@@ -8,6 +8,8 @@ import ProductPage from './pages/ProductPage'
 import ProductDetail from './Productos/ProductDetail'
 import Admin from './Admin/Admin';
 import Homepage from './pages/Homepage';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function App() {
   const [contadorCarrito, setContadorCarrito] = useState(0);
@@ -24,6 +26,8 @@ function App() {
         <Route path="/producto/:id" element={<ProductDetail agregar={agregarAlCarrito}/>} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/admin/crear-producto" element={<Admin />} />
+        <Route path='/registro' element={<Register />}></Route>
+        <Route path='/usuario/:id' element={<Profile />}></Route>
       </Routes>
       <Footer/>
     </>
