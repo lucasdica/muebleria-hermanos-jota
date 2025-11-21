@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import styles from "../Register/Register.module.css";
+import { API_URL } from "../config";
 
 const Register = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [password, setPassword] = useState("");
 
   const enviarFormulario = async (evento) => {
     evento.preventDefault();
 
     try {
-      const respuesta = await fetch(`${API_URL}`, {
+      const respuesta = await fetch(`${API_URL}/usuarios`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -20,7 +21,7 @@ const Register = () => {
           nombre,
           apellido,
           email,
-          contrasena,
+          password,
         }),
       });
 
@@ -33,7 +34,7 @@ const Register = () => {
       setNombre("");
       setApellido("");
       setEmail("");
-      setContrasena("");
+      setPassword("");
 
     } catch (error) {
       console.error("Error al enviar formulario:", error);
@@ -86,8 +87,8 @@ const Register = () => {
             <input
               type="password"
               id="contrasena"
-              value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>

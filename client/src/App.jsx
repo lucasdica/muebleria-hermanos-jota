@@ -10,6 +10,8 @@ import Admin from './Admin/Admin';
 import Homepage from './pages/Homepage';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import Login from './pages/Login';
+import RutaProtegida from './Routes/RutasProtegidas';
 
 function App() {
   const [contadorCarrito, setContadorCarrito] = useState(0);
@@ -19,17 +21,21 @@ function App() {
 
   return (
     <>
-      <Navbar contador={contadorCarrito} />
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/productos' element={<ProductPage agregar={agregarAlCarrito} />} />
-        <Route path="/producto/:id" element={<ProductDetail agregar={agregarAlCarrito}/>} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/admin/crear-producto" element={<Admin />} />
-        <Route path='/registro' element={<Register />}></Route>
-        <Route path='/usuario/:id' element={<Profile />}></Route>
-      </Routes>
-      <Footer/>
+        <Navbar contador={contadorCarrito} />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/productos' element={<ProductPage agregar={agregarAlCarrito} />} />
+          <Route path="/producto/:id" element={<ProductDetail agregar={agregarAlCarrito}/>} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/admin/crear-producto" element={<Admin />} />
+          <Route path='/registro' element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* RUTA SOLO SI ESTÁ LOGUEADO */}
+          <Route path='/perfil' element={<RutaProtegida><Profile /></RutaProtegida>} />
+
+        </Routes>
+        <Footer/>
     </>
   )
 }

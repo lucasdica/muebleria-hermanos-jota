@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
 import styles from "../Profile/Profile.module.css";
+import { API_URL } from "../config";
 
 const Profile = () => {
+  const { usuario: usuarioContext } = useContext(AuthContext);
   const [usuario, setUsuario] = useState(null);
   const [imagenPreview, setImagenPreview] = useState(null);
   const [imagenFile, setImagenFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    obtenerUsuario();
-  }, []);
-
-  const obtenerUsuario = async () => {
-    try {
-      const respuesta = await fetch(`${API_URL}`);
-
-      const data = await respuesta.json();
-      setUsuario(data);
-      setImagenPreview("https://lucasdica.github.io/productos-hermanos-jota/productos-images/profileDefault.png");
-    } catch (error) {
-      console.error("Error al cargar usuario:", error);
+    if (usuarioContext) {
+      setUsuario(usuarioContext);
+      setImagenPreview(
+        usuarioContext.fotoPerfil ||
+        "https://lucasdica.github.io/productos-hermanos-jota/productos-images/profileDefault.png"
+      );
     }
-  };
+  }, [usuarioContext]);
 
   const manejarCambioImagen = (e) => {
     const archivo = e.target.files[0];
@@ -33,28 +31,51 @@ const Profile = () => {
   const guardarCambios = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("nombre", usuario.nombre);
-    formData.append("apellido", usuario.apellido);
-    formData.append("email", usuario.email);
-
-    if (imagenFile) {
-      formData.append("fotoPerfil", imagenFile);
+    if (!usuario || !usuario.id) {
+      alert("Usuario no válido");
+      return;
     }
 
+    setLoading(true);
+
     try {
-      const respuesta = await fetch(`${API_URL}`, {
+      let body;
+      let headers = {};
+
+      if (imagenFile) {
+        body = new FormData();
+        body.append("nombre", usuario.nombre);
+        body.append("apellido", usuario.apellido);
+        body.append("email", usuario.email);
+        body.append("password", usuario.password);
+        body.append("fotoPerfil", imagenFile);
+      } else {
+        body = JSON.stringify({
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
+          email: usuario.email,
+          password: usuario.password,
+        });
+        headers["Content-Type"] = "application/json";
+      }
+
+      const respuesta = await fetch(`${API_URL}/usuarios/${usuario.id}`, {
         method: "PUT",
-        body: formData,
+        headers,
+        body,
       });
 
       if (!respuesta.ok) throw new Error("Error al actualizar");
 
-      alert("Perfil actualizado correctamente");
+      const data = await respuesta.json();
 
+      setUsuario(data);
+      alert("Perfil actualizado correctamente");
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error al actualizar perfil:", error);
       alert("No se pudo actualizar el perfil");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,14 +86,9 @@ const Profile = () => {
       <h1>Mi Perfil</h1>
 
       <form onSubmit={guardarCambios} className={styles.formulario}>
-
         {/* FOTO DE PERFIL */}
         <div className={styles.contenedorFoto}>
-          <img
-            src={imagenPreview}
-            alt="Foto de perfil"
-            className={styles.foto}
-          />
+          <img src={imagenPreview} alt="Foto de perfil" className={styles.foto} />
           <label className={styles.botonSubir}>
             Cambiar foto
             <input type="file" accept="image/*" onChange={manejarCambioImagen} hidden />
@@ -84,7 +100,7 @@ const Profile = () => {
           <label>Nombre:</label>
           <input
             type="text"
-            value={usuario.nombre}
+            value={usuario.nombre || ""}
             onChange={(e) => setUsuario({ ...usuario, nombre: e.target.value })}
           />
         </div>
@@ -93,7 +109,7 @@ const Profile = () => {
           <label>Apellido:</label>
           <input
             type="text"
-            value={usuario.apellido}
+            value={usuario.apellido || ""}
             onChange={(e) => setUsuario({ ...usuario, apellido: e.target.value })}
           />
         </div>
@@ -102,15 +118,26 @@ const Profile = () => {
           <label>Email:</label>
           <input
             type="email"
-            value={usuario.email}
+            value={usuario.email || ""}
             onChange={(e) => setUsuario({ ...usuario, email: e.target.value })}
           />
         </div>
 
-        <button type="submit" className={styles.botonGuardar}>Guardar cambios</button>
+        <div className={styles.grupo}>
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            value={usuario.password || ""}
+            onChange={(e) => setUsuario({ ...usuario, password: e.target.value })}
+          />
+        </div>
+
+        <button type="submit" className={styles.botonGuardar} disabled={loading}>
+          {loading ? "Guardando..." : "Guardar cambios"}
+        </button>
       </form>
     </main>
   );
 };
 
-export default Profile;
+export default Profile

@@ -61,6 +61,14 @@
   margin-left: 0;
 }
 
+.loginRegister {
+  display: flex;
+  gap: 2px;
+  padding: 5px;
+  border: 1px solid var(--color-det-fem);
+  border-radius: 5px;
+}
+
 /* Medias */
 
 /* Mobile */
