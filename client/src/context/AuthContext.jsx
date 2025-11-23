@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { API_URL } from "../config";
+import { API_USUARIOS } from "../config";
 
 export const AuthContext = createContext();
 
@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
       }
 
       try {
-        const res = await fetch(`${API_URL}/usuarios`, {
+        const res = await fetch(`${API_USUARIOS}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
