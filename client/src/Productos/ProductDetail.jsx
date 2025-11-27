@@ -124,7 +124,8 @@ function ProductDetail({ agregar }) {
         <div className={styles.precioComprar}>
           <p className={styles.precio}>${producto.precio}</p>
           <div className={styles.botonCta} disabled={!producto.enStock}>
-            <AgregarAlCarrito agregar={agregar} />
+            {/* <AgregarAlCarrito agregar={agregar} /> */}
+            <AgregarAlCarrito producto={producto} />
           </div>
         </div>
 

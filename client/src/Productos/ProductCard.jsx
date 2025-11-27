@@ -15,13 +15,14 @@ function ProductCard({ productos, agregar }) {
         <p>No se encontraron productos</p>
       ) : (
         productos.map((producto) => (
-          <div key={producto.ID} className={styles.card}>
+          <div key={producto._id} className={styles.card}>
             <img src={producto.imagen} alt={producto.nombre} onClick={() => handleClickProducto(producto._id)} />
             <div className={styles.infoProductCard} onClick={() => handleClickProducto(producto._id)}>
               <h3>{producto.nombre}</h3>
               <p>${producto.precio}</p>
             </div>
-            <AgregarAlCarrito agregar={agregar} />
+            {/* <AgregarAlCarrito agregar={agregar} /> */}
+            <AgregarAlCarrito producto={producto} />
           </div>
         ))
       )}
