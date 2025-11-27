@@ -21,7 +21,6 @@ function ProductCard({ productos, agregar }) {
               <h3>{producto.nombre}</h3>
               <p>${producto.precio}</p>
             </div>
-            {/* <AgregarAlCarrito agregar={agregar} /> */}
             <AgregarAlCarrito producto={producto} />
           </div>
         ))

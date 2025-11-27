@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../Carrito/CartPage.module.css";
 
 function CarritoPage() {
-  const { cart, removeFromCart, clearCart, totalCantidad, totalPrecio } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart, totalPrecio } = useContext(CartContext);
   const { usuario } = useContext(AuthContext);
   const navigate = useNavigate();
 

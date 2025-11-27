@@ -29,8 +29,6 @@ function ProductDetail({ agregar }) {
 
         const mueble = await respuesta.json();
 
-        //console.log(mueble.status);
-
         //if (mueble.error.includes('Cast to ObjectId failed for value')) {
         if (mueble.status === 400) {
           setError("ID no válido");
@@ -124,7 +122,6 @@ function ProductDetail({ agregar }) {
         <div className={styles.precioComprar}>
           <p className={styles.precio}>${producto.precio}</p>
           <div className={styles.botonCta} disabled={!producto.enStock}>
-            {/* <AgregarAlCarrito agregar={agregar} /> */}
             <AgregarAlCarrito producto={producto} />
           </div>
         </div>
