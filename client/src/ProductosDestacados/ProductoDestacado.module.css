@@ -16,7 +16,6 @@
     text-align: center;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 

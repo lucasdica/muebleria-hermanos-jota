@@ -1,0 +1,25 @@
+.contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    max-width: 600px;
+    min-height: 350px;
+}
+
+.title {
+    color: var(--color-sec);
+}
+
+.btnInicio {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--color-det-fem);
+}
