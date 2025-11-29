@@ -79,20 +79,29 @@ rutasUsuario.post("/login", async (req, res) => {
   }
 });
 
-rutasUsuario.get("/perfil", autenticarUsuario, async (req, res) => {
+rutasUsuario.get("/perfil/:id", autenticarUsuario, async (req, res) => {
   try {
-    const usuarioId = req.user.id;
+    const usuarioId = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(usuarioId)) {
+      // const error = new Error('ID del ususario invalido');
+      // error.status = 400;
+      // return next(error);
+      return res.status(400).json({mensaje: "ID de usuario inválido"});
+    }
 
     const usuarioInfo = await Usuario.findById(usuarioId);
 
     if (!usuarioInfo) {
-      res.status(404).json({mensaje: "Error al intentar obtener la informacion de perfil",});
+      // const error = new Error('Error al intentar obtener la informacion del usuario');
+      // error.status = 404;
+      // return next(error);
+      return res.status(404).json({mensaje: "Error al intentar obtener la informacion de perfil",});
     }
 
     res.status(200).json(usuarioInfo);
 
   } catch (error) {
-    console.error(`Error al buscar el Usuario`, error.message);
     error.status = 500;
     next(error);
   }

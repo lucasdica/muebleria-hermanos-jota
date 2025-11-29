@@ -61,6 +61,11 @@ const productSchema = new mongoose.Schema({
             },
             message: 'La imagen debe ser una URL válida'
         }
+    },
+    numeroDeVentas: {
+        type: Number,
+        default: 0,
+        required: true
     }
 }, {
     timestamps: true,

@@ -8,11 +8,13 @@ import { corsOptions } from './cors/cors.js';
 //rutas
 import rutaProductos from './rutas/ruta.productos.js'
 import rutasUsuarios from './rutas/ruta.usuario.js'
+import rutasCompras from './rutas/ruta.compras.js'
 
 //middlewares
 import { logger } from './middlewares/logger.js';
 import { rutaNoEncontrada } from './middlewares/rutaNoEncontrada.js';
 import { errores } from './middlewares/errores.js';
+import { autenticarUsuario } from './middlewares/autenticacion.js';
 
 //BD
 import { conectarBD } from './utils/baseDeDatos.js';
@@ -31,18 +33,14 @@ app.use(express.json());
 
 app.use(cors(corsOptions));
 
-const exitoDB = conectarBD(process.env.MONGODB);
-
-if(!exitoDB){
-    console.error('Error al intentar conectar la base de datos');
-    process.exit(1);
-}
+const conexionBD = await conectarBD(process.env.MONGODB);
 
 app.use(logger)
 
 //rutas
 app.use('/api/productos', rutaProductos);
 app.use('/api/usuarios', rutasUsuarios);
+app.use('/api/compras', autenticarUsuario, rutasCompras);
 
 //ruta desconocida
 app.use(/.*/, rutaNoEncontrada);

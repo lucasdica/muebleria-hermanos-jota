@@ -1,21 +1,25 @@
 import mongoose from 'mongoose'
-import { Product } from './modelo.product'
-import { Usuario } from './modelo.usuario'
 
 const compraSchema = new mongoose.Schema ({
-
-    productos: {
-        type: [Product],
+    usuario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Usuario',
         required: true
     },
+    productos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
+    }],
     precioTotal: {
         type: Number,
         required: true,
     },
-    comprador: {
-        type: Usuario,
-        required: true
-    }, 
+    estado: {
+        type: String,
+        enum: ['pendiente', 'confirmando', 'cancelado'],
+        default: 'pendiente'
+    },
 }, {
     timestamps: true,
     collection: 'Compras',
