@@ -1,7 +1,7 @@
 import styles from './CrearProducto.module.css';
 // import mongoose from "mongoose";
 import { useState } from "react";
-import { API_URL } from "../config";
+import { API_PRODUCTOS } from "../config";
 
 function CrearProducto() {
   const [formProducto, setFormProducto] = useState({
@@ -30,7 +30,7 @@ function CrearProducto() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${API_URL}`, {
+      const response = await fetch(`${API_PRODUCTOS}`, {
         method: 'POST',
         headers: {
           'Accept': "application/json",

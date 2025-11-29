@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import styles from "../Profile/Profile.module.css";
-import { API_URL } from "../config";
+import { API_USUARIOS } from "../config";
 
 const Profile = () => {
   const { usuario: usuarioContext } = useContext(AuthContext);
@@ -59,7 +59,7 @@ const Profile = () => {
         headers["Content-Type"] = "application/json";
       }
 
-      const respuesta = await fetch(`${API_URL}/usuarios/${usuario.id}`, {
+      const respuesta = await fetch(`${API_USUARIOS}/perfil/${usuario.id}`, {
         method: "PUT",
         headers,
         body,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../Register/Register.module.css";
-import { API_URL } from "../config";
+import { API_USUARIOS } from "../config";
 
 const Register = () => {
   const [nombre, setNombre] = useState("");
@@ -12,7 +12,7 @@ const Register = () => {
     evento.preventDefault();
 
     try {
-      const respuesta = await fetch(`${API_URL}/usuarios`, {
+      const respuesta = await fetch(`${API_USUARIOS}/registro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

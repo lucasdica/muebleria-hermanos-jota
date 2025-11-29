@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './ProductoDestacado.module.css';
-import { API_URL } from "../config";
+import { API_PRODUCTOS } from "../config";
 
 function ProductoDestacado() {
     const [productos, setProductos] = useState([]);
@@ -11,7 +11,7 @@ function ProductoDestacado() {
     
     async function cargarProductosDestacados() {
         try {
-            const respuesta = await fetch(`${API_URL}`, {
+            const respuesta = await fetch(`${API_PRODUCTOS}/destacados`, {
                 method: "GET",
                 headers: {
                     'Accept': "application/json",

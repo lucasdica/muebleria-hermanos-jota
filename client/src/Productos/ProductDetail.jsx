@@ -5,7 +5,7 @@ import styles from "./ProductDetail.module.css";
 import AgregarAlCarrito from "../Carrito/AgregarAlCarrito";
 import ModalEditarProducto from "../ModalEditarProducto/ModalEditarProducto";
 import ModalEliminarProducto from "../ModalEliminarProducto/ModalEliminarProducto";
-import { API_URL } from "../config";
+import { API_PRODUCTOS} from "../config";
 
 function ProductDetail({ agregar }) {
   const { id } = useParams();
@@ -19,7 +19,7 @@ function ProductDetail({ agregar }) {
     async function fetchProducto() {
 
       try {
-        const respuesta = await fetch(`${API_URL}/${id}`, {
+        const respuesta = await fetch(`${API_PRODUCTOS}/${id}`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -54,7 +54,7 @@ function ProductDetail({ agregar }) {
 
   const handleGuardarCambios = async (productoEditado) => {
     try {
-      const respuesta = await fetch(`${API_URL}/${id}`, {
+      const respuesta = await fetch(`${API_PRODUCTOS}/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ function ProductDetail({ agregar }) {
 
   const handleEliminarProducto = async () => {
     try {
-      const respuesta = await fetch(`${API_URL}/${id}`, {
+      const respuesta = await fetch(`${API_PRODUCTOS}/${id}`, {
         method: "DELETE",
       });
 

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import Buscador from "../Buscador/Buscador";
 import ProductCard from "../Productos/ProductCard";
-import { API_URL } from "../config";
+import { API_PRODUCTOS } from "../config";
 import { CartContext } from "../context/CartContext";
 
 function ProductPage() {
@@ -13,7 +13,7 @@ function ProductPage() {
   useEffect(() => {
     async function cargarProductos() {
       try {
-        const respuesta = await fetch(`${API_URL}`, {
+        const respuesta = await fetch(`${API_PRODUCTOS}`, {
           method: "GET",
           headers: {
             'Accept': "application/json",
