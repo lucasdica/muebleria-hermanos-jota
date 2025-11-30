@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { Compra } from "../modelos/modelo.compra.js";
+import { Product } from "../modelos/modelo.product.js";
 //modelo de compra
 
 const rutasCompras = Router();
@@ -7,12 +8,14 @@ const rutasCompras = Router();
 //crea orden de compra
 rutasCompras.post('/', async (req, res, next) => {
     try {
-        const {usuarioId, productos, total } = req.body;
+        const {usuario, productos, precioTotal} = req.body;
         
+        console.log(`usuairo: ${usuario}, productos: ${productos}, total: ${precioTotal}`);
+
         const nuevaCompra = new Compra({
-            usuario: usuarioId,
+            usuario: usuario,
             productos: productos,
-            precioTotal: total,
+            precioTotal: precioTotal,
             estado: 'pendiente'
         })
 
@@ -46,6 +49,21 @@ try {
         }
     }
 
+    const bulkOperations = compra.productos.map(productoId => ({
+        updateOne: {
+            filter: { _id: productoId },
+            update: { 
+                $inc: { numeroDeVentas: 1 }
+            }
+        }
+    }));
+
+    // Ejecutar todas las actualizaciones en una sola operación
+    if (bulkOperations.length > 0) {
+        await Product.bulkWrite(bulkOperations);
+        //console.log(`✅ Actualizadas ${bulkOperations.length} productos`);
+    }
+
     compra.estado = 'confirmando';
 
     const compraConfirmada = await compra.save(); //tendria que modificar la compra ya existente;
@@ -64,7 +82,7 @@ rutasCompras.get('/historial', async (req, res, next) => {
 
         const compras = await Compra.find({ usuario: usuarioId}).populate('productos.product', 'nombre imagen').sort({createdAt: -1});
 
-        res.json({exito: true, historial: compras, cantidad: compras.length});
+        res.json({exito: true, historial: compras, cantidadCompras: compras.length});
 
     } catch (error) {
         next(error);

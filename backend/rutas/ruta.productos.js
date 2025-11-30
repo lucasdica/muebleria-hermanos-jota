@@ -16,6 +16,28 @@ rutaProductos.get('/', async (req, res, next) =>{
         next(error);
     }
 })
+
+rutaProductos.get('/destacados', async (req, res, next) => {
+    try {
+        
+        const productosDestacados = await Product.find().sort({ numeroDeVentas: -1}).limit(4);
+        
+        if(productosDestacados.length === 0) {
+            return res.status(200).json({mensaje: 'No se encotraron productos', destacados: []});
+        }
+
+        res.status(200).json({
+            mensaje: 'Destacados encontrados con exito',
+            destacados: productosDestacados,
+            total: productosDestacados.length
+        })
+
+    } catch (error) {
+        console.error(`Error al intentar obtener los productos destacados`, error.message);
+        next(error);
+    }
+})
+
 // GET /api/productos/:id, muestra un producto por su id
 rutaProductos.get('/:id', async (req, res, next) =>{
     try {
@@ -125,24 +147,5 @@ rutaProductos.delete('/:id', async (req, res, next) => {
     }
 })
 
-rutaProductos.get('/destacados', async (req, res, next) => {
-    try {
-        
-        const productosDestacados = await Product.find().sort({ ventas: -1}).limit(10);
-        
-        if(productosDestacados.length === 0) {
-            return res.status(200).json({mensaje: 'No se encotraron productos', destacados: []});
-        }
 
-        res.status(200).json({
-            mensaje: 'Destacados encontrados con exito',
-            destacados: productosDestacados,
-            total: productosDestacados.length
-        })
-
-    } catch (error) {
-        console.error(`Error al intentar obtener los productos destacados`, error,message);
-        next(error);
-    }
-})
 export default rutaProductos;

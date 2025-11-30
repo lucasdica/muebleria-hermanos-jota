@@ -18,6 +18,7 @@ import { autenticarUsuario } from './middlewares/autenticacion.js';
 
 //BD
 import { conectarBD } from './utils/baseDeDatos.js';
+import { debugProductos } from './utils/testeo.js';
 
 const PUERTO = 5000;
 
@@ -30,6 +31,8 @@ const PUERTO = 5000;
 const app = express();
 
 app.use(express.json());
+
+app.use(debugProductos);
 
 app.use(cors(corsOptions));
 
