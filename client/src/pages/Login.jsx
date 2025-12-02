@@ -10,7 +10,7 @@ function Login() {
 
   const [form, setForm] = useState({
     email: "",
-    password: "",
+    clave: "",
   });
 
   const handleChange = (e) => {
@@ -63,9 +63,9 @@ function Login() {
           <div className={styles["grupo-formulario"]}>
             <label>Contraseña</label>
             <input
-              type="password"
-              name="password"
-              value={form.password}
+              type="clave"
+              name="clave"
+              value={form.clave}
               onChange={handleChange}
               required
             />
