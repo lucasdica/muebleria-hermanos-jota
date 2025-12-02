@@ -1,6 +1,8 @@
 import { Usuario } from "../modelos/modelo.usuario.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import mongoose from 'mongoose';
+
 
 export async function crearUsuario(req, res, next) {
 
