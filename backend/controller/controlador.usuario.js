@@ -69,6 +69,8 @@ export async function iniciarSesion(req, res, next) {
       usuario: {
         id: usuario._id,
         email: usuario.email,
+        nombre: usuario.nombre,
+        apellido: usuario.apellido
       },
     });
   } catch (error) {
