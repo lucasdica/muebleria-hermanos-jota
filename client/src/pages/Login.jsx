@@ -35,7 +35,7 @@ function Login() {
       }
 
       // Guardar sesión en context
-      login(data.token, data.usuario);
+      login(data.jwtUsuario, data.usuario);
 
       navigate("/");
     } catch (error) {

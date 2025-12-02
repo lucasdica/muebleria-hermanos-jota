@@ -7,6 +7,8 @@ export function AuthProvider({ children }) {
   const [usuario, setUsuario] = useState(null);
   const [jwtUsuario, setjwtUsuario] = useState(localStorage.getItem("jwtUsuario") || null);
   const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+
 
   useEffect(() => {
     const cargarUsuario = async () => {
@@ -16,7 +18,7 @@ export function AuthProvider({ children }) {
       }
 
       try {
-        const res = await fetch(`${API_USUARIOS}`, {
+        const res = await fetch(`${API_USUARIOS}/perfil/${id}`, {
           headers: {
             Authorization: `Bearer ${jwtUsuario}`,
           },
@@ -49,7 +51,7 @@ export function AuthProvider({ children }) {
   const login = (jwtUsuario, usuario) => {
     localStorage.setItem("jwtUsuario", jwtUsuario);
     localStorage.setItem("usuario", JSON.stringify(usuario));
-    setToken(jwtUsuario);
+    setjwtUsuario(jwtUsuario);
     setUsuario(usuario);
   };
 

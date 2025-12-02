@@ -99,7 +99,7 @@ function ProductDetail({ agregar }) {
   if (error) return <h2>{error}</h2>;
   if (!producto) return <h2>Cargando producto...</h2>;
 
-  const excluir = ["_id", "nombre", "precio", "enStock", "descripcion", "imagen"];
+  const excluir = ["_id", "nombre", "precio", "enStock", "descripcion", "imagen", "numeroDeVentas"];
 
   return (
     <div className={styles.contenedorProducto}>
