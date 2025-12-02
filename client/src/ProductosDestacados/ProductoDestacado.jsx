@@ -23,12 +23,14 @@ function ProductoDestacado() {
                 throw new Error("Error al obtener los productos.");
             }
 
-            const datos = await respuesta.json();
-            setProductos(datos);
+            const data = await respuesta.json();
+
+            setProductos(Array.isArray(data.destacados) ? data.destacados : []);
+
         } catch (error) {
             console.error("Error cargando productos:", error);
         }
-    }  
+    }
 
     return (
         <div className={styles.productosContainer}>
