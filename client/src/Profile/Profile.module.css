@@ -78,3 +78,31 @@
 .botonGuardar:hover {
   background-color: var(--color-det-prem);
 }
+
+
+
+
+.cargando {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 1.2rem;
+  color: #d32f2f;
+}
+
+.idUsuario {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
