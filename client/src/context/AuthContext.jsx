@@ -26,14 +26,18 @@ export function AuthProvider({ children }) {
 
         const data = await res.json();
 
-        const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+        // const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
 
-        if (usuarioGuardado) {
-          const usuarioActual = data.find(u => u.email === usuarioGuardado.email);
-          setUsuario(usuarioActual || null);
-        } else {
-          setUsuario(null);
-        }
+        // if (usuarioGuardado) {
+        //   const usuarioActual = data.find(u => u.email === usuarioGuardado.email);
+        //   setUsuario(usuarioActual || null);
+        // } else {
+        //   setUsuario(null);
+        // }
+        
+        const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+        setUsuario(usuarioGuardado || null);
+
 
       } catch (error) {
         console.error("Error al obtener usuario", error);
