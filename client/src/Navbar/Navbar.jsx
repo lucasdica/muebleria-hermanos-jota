@@ -9,7 +9,7 @@ import CarritoButtom from "../Carrito/CarritoButtom";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const { token, logout, usuario } = useContext(AuthContext);
+  const { jwtUsuario, logout, usuario } = useContext(AuthContext);
   const { totalCantidad } = useContext(CartContext);
 
   return (
@@ -31,7 +31,7 @@ function Navbar() {
         <li><Link to="/productos">Productos</Link></li>
         <li><Link to="/contacto">Contacto</Link></li>
 
-        {token ? (
+        {jwtUsuario ? (
           <div className={styles.loginRegister}>
             <li><Link to="/perfil">{usuario?.nombre}</Link></li>
             <li>/</li>
