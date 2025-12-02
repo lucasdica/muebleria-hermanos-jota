@@ -35,7 +35,7 @@
   align-items: center;
 }
 
-.navbar a {
+.navbar a , .logoutButton{
   text-decoration: none;
   color: var(--color-prin);
   font-weight: bold;
@@ -45,21 +45,7 @@
   cursor: pointer;
 }
 
-
-
-.logoutButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-}
-
-
-
-
-
-
-.navbar a:hover {
+.navbar a:hover, .logoutButton:hover {
   color: var(--color-det-prem);
 }
 
