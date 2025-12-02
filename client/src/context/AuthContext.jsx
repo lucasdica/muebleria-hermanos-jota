@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { API_USUARIOS } from "../config";
+import { useParams} from "react-router-dom";
 
 export const AuthContext = createContext();
 
