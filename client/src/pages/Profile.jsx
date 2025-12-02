@@ -13,10 +13,7 @@ const Profile = () => {
   useEffect(() => {
     if (usuarioContext) {
       setUsuario(usuarioContext);
-      setImagenPreview(
-        // usuarioContext.fotoPerfil ||
-          "https://lucasdica.github.io/productos-hermanos-jota/productos-images/profileDefault.png"
-      );
+      setImagenPreview("https://lucasdica.github.io/productos-hermanos-jota/productos-images/profileDefault.png");
     }
   }, [usuarioContext]);
 
