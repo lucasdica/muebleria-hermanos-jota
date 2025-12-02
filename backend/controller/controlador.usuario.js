@@ -133,15 +133,6 @@ export async function eliminarUsuario(req, res, next) {
   }
 }
 
-/*
 export async function actualizarUsuario(req, res, next) {
-  try {
-    
-    const correoUsuario = req.body.correoUsuario;
-
-  } catch (error) {
-    next(error);
-  }
+  res.status(200).json({mensaje: 'esto no esta terminado'});
 }
-
-*/
