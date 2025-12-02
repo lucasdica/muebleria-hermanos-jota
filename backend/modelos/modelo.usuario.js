@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     apellido: {type: String, required: true},
     email: {type: String, required: true},
     fechaNacimiento: {type: Date, required: true},
-    fotoPerfil: {type: String, default: 'https://lucasdica.github.io/productos-hermanos-jota/productos-images/profileDefault.png'},
+    fotoPerfil: {type: String, default: 'https://lucasdica.github.io/productos-hermanos-jota/productos-images/profileDefault.png', set: v => v === null ? undefined : v },
     clave: {type: String, required: true},
     misPedidos: {type: [String], default: ['vacio']}
 },{
