@@ -14,7 +14,7 @@ const Profile = () => {
     if (usuarioContext) {
       setUsuario(usuarioContext);
       setImagenPreview(
-        usuarioContext.fotoPerfil ||
+        // usuarioContext.fotoPerfil ||
           "https://lucasdica.github.io/productos-hermanos-jota/productos-images/profileDefault.png"
       );
     }
