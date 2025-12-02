@@ -6,11 +6,13 @@ import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
 import styles from "./navbar.module.css";
 import CarritoButtom from "../Carrito/CarritoButtom";
+import { useParams } from "react-router-dom";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const { jwtUsuario, logout, usuario } = useContext(AuthContext);
   const { totalCantidad } = useContext(CartContext);
+  const { id } = useParams();
 
   return (
     <nav className={styles.navbar}>
@@ -33,7 +35,7 @@ function Navbar() {
 
         {jwtUsuario ? (
           <div className={styles.loginRegister}>
-            <li><Link to="/perfil">{usuario?.nombre}</Link></li>
+            <li><Link to={`/perfil/${id}`}>{usuario?.nombre}</Link></li>
             <li>/</li>
             <li onClick={logout}><a>Cerrar sesión</a></li>
           </div>

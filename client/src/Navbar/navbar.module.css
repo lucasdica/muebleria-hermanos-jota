@@ -42,6 +42,7 @@
   transition: color 0.3s;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .navbar a:hover {
