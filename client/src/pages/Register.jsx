@@ -6,7 +6,8 @@ const Register = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [clave, setClave] = useState("");
+  const [fechaNacimiento, setFechaNacimiento] = useState("");
 
   const enviarFormulario = async (evento) => {
     evento.preventDefault();
@@ -21,7 +22,8 @@ const Register = () => {
           nombre,
           apellido,
           email,
-          password,
+          clave,
+          fechaNacimiento
         }),
       });
 
@@ -34,7 +36,8 @@ const Register = () => {
       setNombre("");
       setApellido("");
       setEmail("");
-      setPassword("");
+      setClave("");
+      setFechaNacimiento("");
 
     } catch (error) {
       console.error("Error al enviar formulario:", error);
@@ -48,7 +51,7 @@ const Register = () => {
 
       <form onSubmit={enviarFormulario}>
         <div className={styles["fila-formulario"]}>
-          
+
           <div className={styles["grupo-formulario"]}>
             <label htmlFor="nombre">Nombre:</label>
             <input
@@ -83,12 +86,23 @@ const Register = () => {
           </div>
 
           <div className={styles["grupo-formulario"]}>
-            <label htmlFor="contrasena">Contraseña:</label>
+            <label htmlFor="clave">Contraseña:</label>
             <input
               type="password"
-              id="contrasena"
+              id="clave"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setClave(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className={styles["grupo-formulario"]}>
+            <label htmlFor="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input
+              type="text"
+              id="fechaNacimiento"
+              value={fechaNacimiento}
+              onChange={(e) => setFechaNacimiento(e.target.value)}
               required
             />
           </div>

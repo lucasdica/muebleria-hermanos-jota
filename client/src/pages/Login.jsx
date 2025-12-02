@@ -63,7 +63,7 @@ function Login() {
           <div className={styles["grupo-formulario"]}>
             <label>Contraseña</label>
             <input
-              type="clave"
+              type="password"
               name="clave"
               value={form.clave}
               onChange={handleChange}

@@ -24,7 +24,7 @@ function ProductoDestacado() {
             }
 
             const datos = await respuesta.json();
-            setProductos(datos.slice(0, 4));
+            setProductos(datos);
         } catch (error) {
             console.error("Error cargando productos:", error);
         }
