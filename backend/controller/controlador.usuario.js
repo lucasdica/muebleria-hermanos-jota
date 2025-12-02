@@ -133,6 +133,7 @@ export async function eliminarUsuario(req, res, next) {
   }
 }
 
+/*
 export async function actualizarUsuario(req, res, next) {
   try {
     
@@ -142,3 +143,5 @@ export async function actualizarUsuario(req, res, next) {
     next(error);
   }
 }
+
+*/
