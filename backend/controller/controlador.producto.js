@@ -126,7 +126,7 @@ export async function eliminarProducto(req, res, next) {
         if(!productEliminado) {
             const error = new Error(`No se encontro el product con Id: ${productId}`);
             error.status = 404;
-            return next(error);
+            next(error);
         }
 
         res.status(200).json({

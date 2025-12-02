@@ -10,4 +10,8 @@ rutasUsuario.post("/login", controladorUsuarios.iniciarSesion);
 
 rutasUsuario.get("/perfil/:id", autenticarUsuario, controladorUsuarios.obtenerPerfilUsuario);
 
+rutasUsuario.delete('/eliminarUsuario', autenticarUsuario, controladorUsuarios.eliminarUsuario);
+
+rutasUsuario.put('/actualizarUsuario', autenticarUsuario, controladorUsuarios.actualizarUsuario);
+
 export default rutasUsuario;

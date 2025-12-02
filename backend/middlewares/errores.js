@@ -1,12 +1,11 @@
 export function errores(err, req, res, next) {
-    const statusCode = err.status || 500;
-    const mensaje = err.message || "Error interno del servidor";
+    
+    console.error('Error: ', err.message);
+    
+    const respuestaError = {
+        exito: false,
+        mensaje: err.message || 'Error interno del server',
+    };
 
-    console.error({
-        statusCode,
-        mensaje,
-        stack: err.stack
-    });
-
-    res.status(statusCode).json({ error: mensaje });
+    res.status(err.status || 500).json(respuestaError);
 }

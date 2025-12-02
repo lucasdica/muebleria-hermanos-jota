@@ -104,3 +104,41 @@ export async function obtenerPerfilUsuario(req, res, next) {
     next(error);
   }
 }
+
+export async function eliminarUsuario(req, res, next) {
+  try {
+    
+    const correoUsuario = req.body.correoUsuario;
+
+    const usuarioEliminado = await Usuario.findOneAndDelete({ email: correoUsuario});
+
+    // if(!usuarioEliminado){
+    //   return res.status(404).json({exito: false, correoUsuario: correoUsuario, mensaej: `Usuario de correo: "${correoUsuario}" no encotrado`})
+    // }
+
+    if(!usuarioEliminado) {
+      const error = new Error(`Usuario de correo: "${correoUsuario}" no encontrado`);
+      error.status = 404;
+      error.exito = false;
+      return next(error);
+    }
+
+    res.json({ exito: true, mensaje: 'Usuario eliminado exitosamente', data: usuarioEliminado });
+
+  } catch (error) {
+    error.mensaje = error.message;
+    error.status = 500;
+    error.exito = false;
+    next(error);
+  }
+}
+
+export async function actualizarUsuario(req, res, next) {
+  try {
+    
+    const correoUsuario = req.body.correoUsuario;
+
+  } catch (error) {
+    next(error);
+  }
+}
