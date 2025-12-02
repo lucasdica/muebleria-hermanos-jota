@@ -31,7 +31,6 @@ const Profile = () => {
   const guardarCambios = async (e) => {
     e.preventDefault();
 
-    // usamos usuario.id o usuario._id como fallback
     const idUsuario = usuario?.id || usuario?._id;
     if (!usuario || !idUsuario) {
       alert("Usuario no válido");
@@ -70,14 +69,12 @@ const Profile = () => {
       });
 
       if (!respuesta.ok) {
-        // Si el backend devuelve JSON de error:
         const errData = await respuesta.json().catch(() => null);
         throw new Error(errData?.mensaje || "Error al actualizar");
       }
 
       const data = await respuesta.json();
 
-      // si backend retorna el usuario actualizado (o al menos un objeto), normalizamos
       const usuarioNormalizado = data && (data.id || data._id) ? { ...data, id: data._id || data.id } : usuario;
       setUsuario(usuarioNormalizado);
       localStorage.setItem("usuario", JSON.stringify(usuarioNormalizado));
@@ -86,7 +83,6 @@ const Profile = () => {
     } catch (error) {
       console.error("Error al actualizar perfil:", error);
       alert("No se pudo actualizar el perfil");
-      // si hay problema de autenticación token expirado: cerramos sesión
     } finally {
       setLoading(false);
     }

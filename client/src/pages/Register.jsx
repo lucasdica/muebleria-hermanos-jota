@@ -90,7 +90,7 @@ const Register = () => {
             <input
               type="password"
               id="clave"
-              value={password}
+              value={clave}
               onChange={(e) => setClave(e.target.value)}
               required
             />
@@ -99,7 +99,7 @@ const Register = () => {
           <div className={styles["grupo-formulario"]}>
             <label htmlFor="fechaNacimiento">Fecha de Nacimiento:</label>
             <input
-              type="text"
+              type="date"
               id="fechaNacimiento"
               value={fechaNacimiento}
               onChange={(e) => setFechaNacimiento(e.target.value)}

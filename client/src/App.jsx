@@ -34,7 +34,6 @@ function App() {
         <Route path="/compra-exitosa" element={<CompraExitosa />} />
 
         <Route path='/perfil/:id' element={<RutaProtegida><Profile /></RutaProtegida>} />
-        {/* <Route path='/actualizarUsuario' element={<RutaProtegida><Profile /></RutaProtegida>} /> */}
 
       </Routes>
       <Footer />

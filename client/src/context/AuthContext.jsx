@@ -4,10 +4,8 @@ import { API_USUARIOS } from "../config";
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  // Intentamos cargar usuario/token del localStorage
   const storedUsuario = JSON.parse(localStorage.getItem("usuario")) || null;
   const [usuario, setUsuario] = useState(
-    // si viene _id (desde backend), mapeamos a id
     storedUsuario ? (storedUsuario.id ? storedUsuario : { ...storedUsuario, id: storedUsuario._id }) : null
   );
 
@@ -32,7 +30,6 @@ export function AuthProvider({ children }) {
           return;
         }
 
-        // Preferimos usar usuarioGuardado.id; si no existe, usamos usuarioGuardado._id
         const idParaUsar = usuarioGuardado.id || usuarioGuardado._id;
 
         const res = await fetch(`${API_USUARIOS}/perfil/${idParaUsar}`, {
@@ -48,7 +45,6 @@ export function AuthProvider({ children }) {
 
         const data = await res.json();
 
-        // data viene desde Mongo con _id; garantizamos que exista .id
         const usuarioNormalizado = { ...data, id: data._id || data.id };
 
         setUsuario(usuarioNormalizado);
@@ -66,7 +62,6 @@ export function AuthProvider({ children }) {
 
   // login: guardamos token y usuario (el usuario puede venir con .id)
   const login = (jwt, usuarioRecibido) => {
-    // usuarioRecibido desde tu login ya trae id (según tu controlador) - garantizamos fallback a _id
     const usuarioNormalizado = usuarioRecibido
       ? { ...usuarioRecibido, id: usuarioRecibido.id || usuarioRecibido._id }
       : null;
