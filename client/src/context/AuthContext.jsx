@@ -34,9 +34,9 @@ export function AuthProvider({ children }) {
         if (!res.ok) throw new Error("Error al obtener usuario");
 
         const data = await res.json();
-        setUsuario(data);
+        setUsuario({ ...data, id: data._id });
 
-        localStorage.setItem("usuario", JSON.stringify(data));
+        localStorage.setItem("usuario", JSON.stringify({ ...data, id: data._id }));
       } catch (error) {
         console.error("Error al obtener usuario", error);
         logout();
