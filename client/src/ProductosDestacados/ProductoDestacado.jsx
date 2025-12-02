@@ -3,7 +3,7 @@ import styles from './ProductoDestacado.module.css';
 import { API_PRODUCTOS } from "../config";
 
 function ProductoDestacado() {
-    const [productos, setProductos] = useState([]);
+    const [datos, setProductos] = useState([]);
 
     useEffect(() => {
         cargarProductosDestacados();
@@ -32,10 +32,10 @@ function ProductoDestacado() {
 
     return (
         <div className={styles.productosContainer}>
-            {productos.length === 0 ? (
+            {datos.length === 0 ? (
                 <p>Cargando productos...</p>
             ) : (
-                productos.map((producto) => (
+                datos.map((producto) => (
                     <div className={styles.card} key={producto._id}>
                         <img src={producto.imagen} alt={producto.nombre} />
                         <h3>{producto.nombre}</h3>
