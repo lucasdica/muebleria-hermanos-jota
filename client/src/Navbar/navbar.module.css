@@ -45,6 +45,20 @@
   cursor: pointer;
 }
 
+
+
+.logoutButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+
+
+
+
+
 .navbar a:hover {
   color: var(--color-det-prem);
 }
@@ -114,30 +128,30 @@
 
 /*Notebooks*/
 @media (min-width: 769px) {
-    .navbar {
-        flex-direction: row;
-        align-items: center;
-        padding: 1rem 2rem;
-        justify-content: space-between;
-    }
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+  }
 }
 
 /*Pcs medianas*/
 @media (min-width: 1025px) {
-    .navbar {
-        flex-direction: row;
-        align-items: center;
-        padding: 1rem 2rem;
-        justify-content: space-between;
-    }
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+  }
 }
 
 /*PCs grandes*/
 @media (min-width: 1200px) {
-    .navbar {
-        flex-direction: row;
-        align-items: center;
-        padding: 1rem 2rem;
-        justify-content: space-between;
-    }
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+  }
 }

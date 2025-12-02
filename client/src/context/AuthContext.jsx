@@ -1,10 +1,93 @@
+// import { createContext, useEffect, useState } from "react";
+// import { API_USUARIOS } from "../config";
+
+// export const AuthContext = createContext();
+
+// export function AuthProvider({ children }) {
+//   const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")) || null);
+//   const [jwtUsuario, setJwtUsuario] = useState(localStorage.getItem("jwtUsuario") || null);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const cargarUsuario = async () => {
+//       if (!jwtUsuario) {
+//         setUsuario(null);
+//         setLoading(false);
+//         return;
+//       }
+
+//       try {
+//         const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+
+//         if (!usuarioGuardado?.id) {
+//           logout();
+//           setLoading(false);
+//           return;
+//         }
+
+//         const res = await fetch(`${API_USUARIOS}/perfil/${usuarioGuardado.id}`, {
+//           headers: {
+//             Authorization: `Bearer ${jwtUsuario}`,
+//           },
+//         });
+
+//         if (!res.ok) throw new Error("Error al obtener usuario");
+
+//         const data = await res.json();
+//         setUsuario({ ...data, id: data._id });
+
+//         localStorage.setItem("usuario", JSON.stringify({ ...data, id: data._id }));
+//       } catch (error) {
+//         console.error("Error al obtener usuario", error);
+//         logout();
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     cargarUsuario();
+//   }, [jwtUsuario]);
+
+//   const login = (jwt, usuario) => {
+//     localStorage.setItem("jwtUsuario", jwt);
+//     localStorage.setItem("usuario", JSON.stringify(usuario));
+
+//     setJwtUsuario(jwt);
+//     setUsuario(usuario);
+//   };
+
+//   const logout = () => {
+//     localStorage.removeItem("jwtUsuario");
+//     localStorage.removeItem("usuario");
+
+//     setJwtUsuario(null);
+//     setUsuario(null);
+//   };
+
+//   return (
+//     <AuthContext.Provider
+//       value={{ usuario, jwtUsuario, login, logout, loading }}
+//     >
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// }
+
+// export default AuthContext;
+
 import { createContext, useEffect, useState } from "react";
 import { API_USUARIOS } from "../config";
 
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")) || null);
+  // Intentamos cargar usuario/token del localStorage
+  const storedUsuario = JSON.parse(localStorage.getItem("usuario")) || null;
+  const [usuario, setUsuario] = useState(
+    // si viene _id (desde backend), mapeamos a id
+    storedUsuario ? (storedUsuario.id ? storedUsuario : { ...storedUsuario, id: storedUsuario._id }) : null
+  );
+
   const [jwtUsuario, setJwtUsuario] = useState(localStorage.getItem("jwtUsuario") || null);
   const [loading, setLoading] = useState(true);
 
@@ -19,24 +102,34 @@ export function AuthProvider({ children }) {
       try {
         const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
 
-        if (!usuarioGuardado?.id) {
+        // Si no tenemos un id válido guardado, cerramos sesión
+        if (!usuarioGuardado?.id && !usuarioGuardado?._id) {
           logout();
           setLoading(false);
           return;
         }
 
-        const res = await fetch(`${API_USUARIOS}/perfil/${usuarioGuardado.id}`, {
+        // Preferimos usar usuarioGuardado.id; si no existe, usamos usuarioGuardado._id
+        const idParaUsar = usuarioGuardado.id || usuarioGuardado._id;
+
+        const res = await fetch(`${API_USUARIOS}/perfil/${idParaUsar}`, {
           headers: {
             Authorization: `Bearer ${jwtUsuario}`,
           },
         });
 
-        if (!res.ok) throw new Error("Error al obtener usuario");
+        if (!res.ok) {
+          // si el token expiró o hay problema, tirar logout
+          throw new Error("Error al obtener usuario");
+        }
 
         const data = await res.json();
-        setUsuario({ ...data, id: data._id });
 
-        localStorage.setItem("usuario", JSON.stringify({ ...data, id: data._id }));
+        // data viene desde Mongo con _id; garantizamos que exista .id
+        const usuarioNormalizado = { ...data, id: data._id || data.id };
+
+        setUsuario(usuarioNormalizado);
+        localStorage.setItem("usuario", JSON.stringify(usuarioNormalizado));
       } catch (error) {
         console.error("Error al obtener usuario", error);
         logout();
@@ -48,18 +141,27 @@ export function AuthProvider({ children }) {
     cargarUsuario();
   }, [jwtUsuario]);
 
-  const login = (jwt, usuario) => {
+  // login: guardamos token y usuario (el usuario puede venir con .id)
+  const login = (jwt, usuarioRecibido) => {
+    // usuarioRecibido desde tu login ya trae id (según tu controlador) - garantizamos fallback a _id
+    const usuarioNormalizado = usuarioRecibido
+      ? { ...usuarioRecibido, id: usuarioRecibido.id || usuarioRecibido._id }
+      : null;
+
     localStorage.setItem("jwtUsuario", jwt);
-    localStorage.setItem("usuario", JSON.stringify(usuario));
+    if (usuarioNormalizado) {
+      localStorage.setItem("usuario", JSON.stringify(usuarioNormalizado));
+    } else {
+      localStorage.removeItem("usuario");
+    }
 
     setJwtUsuario(jwt);
-    setUsuario(usuario);
+    setUsuario(usuarioNormalizado);
   };
 
   const logout = () => {
     localStorage.removeItem("jwtUsuario");
     localStorage.removeItem("usuario");
-
     setJwtUsuario(null);
     setUsuario(null);
   };

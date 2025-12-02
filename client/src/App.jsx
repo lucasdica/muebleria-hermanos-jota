@@ -15,28 +15,31 @@ import Admin from './Admin/Admin'
 import CarritoPage from './pages/CarritoPage';
 import CheckoutPage from "./pages/CheckoutPage";
 import CompraExitosa from './Checkout/CompraExitosa'
+import { AuthProvider } from './context/AuthContext'; // ← agregado
 
 function App() {
   return (
-    <CartProvider>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/productos' element={<ProductPage />} />
-        <Route path="/producto/:id" element={<ProductDetail />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/admin/crear-producto" element={<Admin />} />
-        <Route path='/registro' element={<Register />} />
-        <Route path="/login" element={<Login />} />
+    <AuthProvider>
+      <CartProvider>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/productos' element={<ProductPage />} />
+          <Route path="/producto/:id" element={<ProductDetail />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/admin/crear-producto" element={<Admin />} />
+          <Route path='/registro' element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/compra" element={<CarritoPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/compra-exitosa" element={<CompraExitosa />} />
+          <Route path="/compra" element={<CarritoPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/compra-exitosa" element={<CompraExitosa />} />
 
-        <Route path='/perfil/:id' element={<RutaProtegida><Profile /></RutaProtegida>} />
-      </Routes>
-      <Footer />
-    </CartProvider>
+          <Route path='/perfil/:id' element={<RutaProtegida><Profile /></RutaProtegida>} />
+        </Routes>
+        <Footer />
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
