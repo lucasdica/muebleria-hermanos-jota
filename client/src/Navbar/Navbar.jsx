@@ -33,7 +33,7 @@ function Navbar() {
 
         {jwtUsuario ? (
           <div className={styles.loginRegister}>
-            <li><Link to={`/perfil/${usuario?.id}`}>{usuario?.nombre}</Link></li>
+            <li><Link to={`/perfil/${usuario?._id}`}>{usuario?.nombre}</Link></li>
             <li>/</li>
             <li onClick={logout}><a>Cerrar sesión</a></li>
           </div>
